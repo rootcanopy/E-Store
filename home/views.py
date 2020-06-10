@@ -33,11 +33,12 @@ def contact_page(request):
     return render(request, 'home/contact.html', {'form': form})
 
 
-# REDIRECTS TO A NEW PAGE WILL NEED TO CHANGE THIS
+# REDIRECTS TO A NEW PAGE, WILL NEED TO CHANGE THIS
 def confirm_success(request):
     return HttpResponse('Success! Thank you for your message.')
 
 
+# COMPANY ABOUT PAGE
 def about_page(request):
     """ view to return about page """
     return render(request, 'home/about.html')
