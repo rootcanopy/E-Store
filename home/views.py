@@ -10,10 +10,10 @@ def home_page(request):
 
 
 def contact_page(request):
-    """ view to return landing page """
+    """ view to return contact page """
     return render(request, 'home/contact.html')
 
 
 def about_page(request):
-    """ view to return landing page """
+    """ view to return about page """
     return render(request, 'home/about.html')
