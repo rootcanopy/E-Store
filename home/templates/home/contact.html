@@ -6,12 +6,12 @@
 
 <section class="container">
 	<!-- CONTACT FORM -->
-	<form class="text-center border border-dark p-5 mt-5" method="POST" action="#!">
+	<form class="text-center border border-dark p-5 mt-5" method="POST" action="“destination” or “url.”">
 
 			<p class="h4 mb-4">Contact us</p>
 				
-				{% crispy %} 
-    		{{ form |crispy }}
+				{% csrf_token %}
+    		{{ form.as_p }}
 
 			<!-- SEND -->
 			<button class="btn btn-info btn-block" type="submit">Send</button>

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 from .forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 
@@ -12,6 +13,10 @@ def home_page(request):
 
 def contact_page(request):
     """ view to return contact page """
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+
     return render(request, 'home/contact.html')
 
 

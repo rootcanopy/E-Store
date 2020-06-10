@@ -1,8 +1,9 @@
 from django import forms
 
 
+# CONTACT FORM
+# REQUIRED = TRUE by DEFAULT
 class ContactForm(forms.Form):
-    first_name = forms.CharField(required=True)
-    email = forms.CharField(required=True)
-    subject = forms.ChoiceField(required=True)
-    message = forms.CharField(widget=forms.Textarea, required=True)
+    name = forms.CharField(label='Your name', max_length='100')
+    email = forms.EmailField(label='Your email', max_length='100')
+    message = forms.CharField(widget=forms.Textarea)
