@@ -6,14 +6,14 @@ from django.http import HttpResponse
 
 def home_page(request):
     """ view to return landing page """
-    return render(request, 'home/index.html', {})
+    return render(request, 'home/index.html')
 
 
 def contact_page(request):
     """ view to return landing page """
-    return render(request, 'home/contact.html', {})
+    return render(request, 'home/contact.html')
 
 
 def about_page(request):
     """ view to return landing page """
-    return render(request, 'home/about.html', {})
+    return render(request, 'home/about.html')
