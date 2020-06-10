@@ -4,8 +4,6 @@ from .forms import ContactForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, BadHeaderError
 
-# Create your views here.
-
 
 def home_page(request):
     """ view to return landing page """
