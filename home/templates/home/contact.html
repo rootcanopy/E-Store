@@ -1,20 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block content %}
 
 <section class="container">
 	<!-- CONTACT FORM -->
-	<form class="text-center border border-dark p-5 mt-5" method="POST" action="“destination” or “url.”">
+	<form class="border border-dark p-4 mt-5" method="POST" action="{% url 'contact' %}">
 
-			<p class="h4 mb-4">Contact us</p>
+			<p class="text-center h4 mb-4">Contact us</p>
 				
 				{% csrf_token %}
     		{{ form.as_p }}
 
 			<!-- SEND -->
-			<button class="btn btn-info btn-block" type="submit">Send</button>
+			<button class="btn btn-info" type="submit">Send</button>
 
 	</form>
 </section>
