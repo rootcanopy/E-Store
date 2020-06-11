@@ -10,7 +10,7 @@
 			<p class="text-center h4 mb-4">Contact us</p>
 				
 				{% csrf_token %}
-    		{{ form.as_p }}
+    		{{ form|crispy }}
 
 			<!-- SEND -->
 			<button class="btn btn-info" type="submit">Send</button>
