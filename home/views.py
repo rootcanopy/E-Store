@@ -16,24 +16,29 @@ def contact_page(request):
     if request.method == 'GET':
         form = ContactForm()
     else:
-        form = ContactForm(request.POST)
+        form = ContactForm(request.POST or None)
         if form.is_valid():
             name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
+            email_from = form.cleaned_data['email_from']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             print(form.cleaned_data)
             try:
-                send_mail(name, subject, message, email, ['admin@gmail.com'])
+                send_mail(name, subject, message, email_from, ['admin@gmail.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-            return redirect('success')
+            messages.success(request, f'We have recieved your message and will \
+                get back to you as soon as we can!')
+            return render(request, 'home/index.html')
+        else:
+            form = ContactForm()
+
     return render(request, 'home/contact.html', {'form': form})
 
 
 # REDIRECTS TO A NEW PAGE, WILL NEED TO CHANGE THIS
-def confirm_success(request):
-    return HttpResponse('Success! Thank you for your message.')
+# def confirm_success(request):
+#    return HttpResponse('Success! Thank you for your message.')
 
 
 # COMPANY ABOUT PAGE
