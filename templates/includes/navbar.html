@@ -1,27 +1,39 @@
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">E-Store</a>
+    <nav class="navbar navbar-expand-md navbar-light bg-dark">
+      <a class="navbar-brand" href="#"><i class="fas fa-store text-primary fa-2x"></i></a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
         
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#">About Us</a>
-          <a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a>
-          <a class="nav-item nav-link" href="#">Cart</a>
+          <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="#">About</a>
+          <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'contact' %}">Contact</a>
+          <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="#">Cart</a>
 
         {% if user.is_authenticated %}
-          <a class="nav-item nav-link" href="{% url 'account_logout' %}">Logout</a>
-          <a class="nav-item nav-link" href="">My Profile</a>
+          <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'account_logout' %}">Logout</a>
+          <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="">My Profile</a>
         {% else %}
-          <a class="nav-item nav-link" href="{% url 'account_login' %}">Login</a>
-          <a class="nav-item nav-link" href="{% url 'account_signup' %}">Register</a>
+          <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'account_login' %}">Login</a>
+          <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'account_signup' %}">Register</a>
         {% endif %}
         </div>
+
+        <!-- SEARCH INPUT -->
+        <form class="form-inline ml-3">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search">
+            <div class="input-group-append">
+              <button type="button" class="btn btn-primary" id="btn-search" name="button">
+                <i class="fas fa-search fa-1.5x"></i>
+              </button>
+            </div>
+          </div>
+        </form>
 
       </div>
     </nav>
