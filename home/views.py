@@ -1,13 +1,31 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import ContactForm
+from products.models import Category, Product
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, BadHeaderError
 
 
-def home_page(request):
+def home_page(request, category_slug=None):
     """ view to return landing page """
-    return render(request, 'home/index.html')
+    category_page = None
+    products = None
+    if category_slug != None:
+        category_page = get_object_or_404(
+            Category,
+            slug=category_slug
+        )
+        products = Product.objects.filter(
+            category=category_page,
+            in_stock=True,
+        )
+    else:
+        products = Product.objects.all()
+    context = {
+        'category': category_page,
+        'products': products
+    }
+    return render(request, 'home/index.html', context)
 
 
 # USER QUERY FORM

@@ -4,66 +4,64 @@
 {% block title %} E-Home {% endblock %}
 
 {% block content %}
-    <!-- HERO IMAGE ON LANDING PAGE-->
-    <header>
-        <div class="container-fluid">
-            <div class="row">
-                <img class="hero" src="{% static 'images/E-commerce.jpg' %}" alt="">
-            </div>
-        </div>
-    </header>
-        <!-- ALL PRODUCTS GRID -->
-    <section>
-        <div class="container py-4">
-            <div class="row">
-                <div class="col-10 mx-auto text-center">
-                    <h1 class="text-capitalize font-weight-bold">
-                        all products
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- THE PRODUCT GRID LIST -->
-    <main class="container">
-        <div class="row">
-            <div class="col-9 col-md-6 col-lg-3 mx-auto">
-                <div class="col-item">
-                    <div class="photo">
-                        <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
-                    </div>
+<!-- HERO IMAGE ON LANDING PAGE-->
+<header>
+	<div class="container-fluid">
+		<div class="row">
+			<img class="hero" src="{% static 'images/E-commerce.jpg' %}" alt="">
+		</div>
+	</div>
+</header>
+<!-- ALL PRODUCTS GRID -->
+<section>
+	<div class="container py-4">
+		<div class="row">
+			<div class="col-10 mx-auto text-center">
+				<h1 class="text-capitalize font-weight-bold">
+					all products
+				</h1>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- PRODUCT GRID -->
+	<main class="container">
+		<div class="row">
+		{% for product in products %}
+			<div class="col-9 col-md-6 col-lg-3 mx-auto">
+				<div class="card mb-4">
 
-                    <div class="info">
-                        <div class="row">
-                            <div class="price col-md-6">
-                                <h5>
-                                    Sample Product
-                                </h5>
-                                <h5 class="price-text-color">
-                                    $199.99
-                                </h5>
-                            </div>
+					<!-- CARD IMAGE -->
+					<div class="view overlay">
+						<img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+						<a>
+							<div class="mask rgba-white-slight"></div>
+						</a>
+					</div>
 
-                            <div class="rating hidden-sm col-md-6">
-                                <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
-                                </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
-                                </i><i class="fa fa-star"></i>
-                            </div>
-                        </div>
+					<!--CARD CONTENT -->
+					<div class="card-body text-center">
+						<!-- CATEGORY & NAME -->
+						<a href="" class="grey-text">
+							<h5>{{ product.category }}</h5>
+						</a>
+						<h5>
+							<strong>
+								<a href="" class="dark-grey-text">{{ product.name }}
+									<span class="badge badge-pill danger-color">NEW</span>
+								</a>
+							</strong>
+						</h5>
 
-                        <div class="separator clear-left">
-                            <p class="btn-add">
-                                <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm"></a></p>
-                            <p class="btn-details">
-                                <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p>
-                        </div>
+						<h4 class="font-weight-bold blue-text">
+							<strong>€ {{ product.price }} </strong>
+						</h4>
+					</div>
 
-                        <div class="clearfix"></div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
+	</main>
 
 {% endblock %}
