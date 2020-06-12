@@ -3,4 +3,8 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+    hi {{user.username}}!
+{% endif %}
+
 {% endblock %}

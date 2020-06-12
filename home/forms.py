@@ -4,8 +4,7 @@ from django import forms
 # CONTACT FORM
 # REQUIRED = TRUE by DEFAULT
 class ContactForm(forms.Form):
-    name = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    subject = forms.CharField(required=True)
-    message = forms.CharField(widget=forms.Textarea,
-                              required=True)
+    name = forms.CharField()
+    email = forms.EmailField()
+    subject = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea)

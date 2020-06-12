@@ -24,7 +24,7 @@ def contact_page(request):
             message = form.cleaned_data['message']
             print(form.cleaned_data)
             try:
-                send_mail(subject, message, email, ['admin@gmail.com'])
+                send_mail(name, subject, message, email, ['admin@gmail.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('success')
