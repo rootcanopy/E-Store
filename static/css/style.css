@@ -1,4 +1,13 @@
+
+/*-- NAVBAR --*/
+
 #btn-search {
     margin: 0;
     padding: 0.58rem;
+}
+
+/*-- LANDING PAGE --*/
+
+img.hero {
+    width: 100%;
 }

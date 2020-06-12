@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Home {% endblock %}
+{% block title %} E-Home {% endblock %}
 
 {% block content %}
 
-{% if user.is_authenticated %}
-    hi {{user.username}}!
-{% endif %}
+<div class="container-fluid">
+    <div class="row">
+        <img class="hero" src="{% static 'images/E-commerce.jpg' %}" alt="">
+    </div>
+</div>
 
 {% endblock %}
