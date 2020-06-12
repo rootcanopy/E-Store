@@ -1,6 +1,6 @@
   <header>
     <nav class="navbar navbar-expand-md navbar-light bg-dark">
-      <a class="navbar-brand" href="#"><i class="fas fa-store text-primary fa-2x"></i></a>
+      <a class="navbar-brand" href="/"><i class="fas fa-store text-primary fa-2x"></i></a>
 
       <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,6 +10,14 @@
         
         <div class="navbar-nav">
           <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="#">Home <span class="sr-only">(current)</span></a>
+          
+          <a class="nav-item dropdown"><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" href="#" data-toggle="dropdown">Categories</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'home' %}">All Products</a>
+              {% for category in links %}
+                <a class="dropdown-item" href="{{ category.get_url }}">{{ category.name }}</a>
+              {% endfor %}
+            </div>
           <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="#">About</a>
           <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'contact' %}">Contact</a>
           <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="#">Cart</a>

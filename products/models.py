@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Product(models.Model):
@@ -18,6 +19,9 @@ class Product(models.Model):
         ordering = ('name',)
         verbose_name_plural = 'products'
         index_together = (('id', 'slug'),)
+    
+    def get_url(self):
+        return reverse('products_by_cat', args=[self.slug])
 
     def __str__(self):
         return self.name

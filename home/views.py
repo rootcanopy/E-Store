@@ -6,8 +6,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, BadHeaderError
 
 
+def home(request):
+    """ VIEW TO RETURN HOME """
+    return render(request, 'home/index.html')
+
+
 def home_page(request, category_slug=None):
-    """ view to return landing page """
+    """ view to return products on landing page """
     category_page = None
     products = None
     if category_slug != None:
