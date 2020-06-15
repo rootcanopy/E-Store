@@ -12,7 +12,7 @@ def home(request):
     context = {
         'products': products
     }
-    return render(request, 'home/index.html')
+    return render(request, 'home/index.html', context)
 
 
 def home_page(request, category_slug=None):
