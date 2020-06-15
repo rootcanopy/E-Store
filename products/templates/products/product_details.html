@@ -1,45 +1,69 @@
 {% extends 'base.html' %}
-{% loads static %}
+{% load static %}
 
-{% block title %} Product View {% endblock title %}
+{% block title %} {{ product.name }} {% endblock title%}
 
-{% block product %}
+{% block content %}
 
-<section class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="http://tech.firstpost.com/wp-content/uploads/2014/09/Apple_iPhone6_Reuters.jpg" alt="" class="img-responsive">
-                
-                <div class="caption">
-                    <h4 class="pull-right">$700.99</h4>
-                    <h4><a href="#">Mobile Product</a></h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                </div>
+  <!--PRODUCT DETAILS -->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+      <div class="row">
+        <div class="col-md-6 mb-4">
 
-                <div class="ratings">
-                    <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                        (15 reviews)
-                    </p>
-                </div>
+          <img src="{{ product.image_url }}" class="img-fluid" alt="{{ product.name }}">
 
-                <div class="space-ten"></div>
-
-                <div class="btn-ground text-center">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Quick View</button>
-                </div>
-
-                    <div class="space-ten"></div>
-
-                </div>
-            </div>
         </div>
-    </section>
 
-{% endblock product %}
+        <div class="col-md-6 mb-4">
+
+          <!-- CARD CONTENT -->
+          <div class="p-4">
+
+            <div class="mb-3">
+              <a href="">
+                <span class="badge purple mr-1">{{ product.category }}</span>
+              </a>
+              <a href="">
+                <span class="badge blue mr-1">New</span>
+              </a>
+              <a href="">
+                <span class="badge red mr-1">Bestseller</span>
+              </a>
+            </div>
+
+				{% if product.discount < 0 %}
+					<p class="lead">
+					<span class="mr-1">
+						<del>{{ product.price }}</del>
+					</span>
+					<span>{{ product.discount }}</span>
+					</p>
+				{% else %}
+					<p class="lead">
+					<span class="mr-1">
+						{{ product.price }}
+					</span>
+					</p>
+				{% endif %}
+
+            <p class="lead font-weight-bold">Description:</p>
+
+            <p>{{ product.description }}.</p>
+
+            <form class="d-flex justify-content-left">
+              <!-- Default input -->
+              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+	</main>
+		
+
+{% endblock %}

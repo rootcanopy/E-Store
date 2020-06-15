@@ -19,9 +19,9 @@ class Product(models.Model):
         ordering = ('name',)
         verbose_name_plural = 'products'
         index_together = (('id', 'slug'),)
-    
-    def get_url(self):
-        return reverse('products_by_cat', args=[self.slug])
+
+    # def get_absolute_url(self):
+    #    return reverse('products:product_details', args=[self.category.slug, self.slug])
 
     def __str__(self):
         return self.name
@@ -34,6 +34,9 @@ class Category(models.Model):
     class Meta:
         ordering = ('name',)
         verbose_name_plural = 'categories'
+
+    def get_absolute_url(self):
+        return reverse('products_by_category', args=[self.slug])
 
     def __str__(self):
         return self.name

@@ -8,24 +8,26 @@ from django.core.mail import send_mail, BadHeaderError
 
 def home(request):
     """ VIEW TO RETURN HOME """
+    products = Product.objects.all()
+    context = {
+        'products': products
+    }
     return render(request, 'home/index.html')
 
 
 def home_page(request, category_slug=None):
     """ view to return products on landing page """
     category_page = None
-    products = None
-    if category_slug != None:
+    categories = Category.objects.all()
+    products = Product.objects.all()
+    if category_slug:
         category_page = get_object_or_404(
             Category,
             slug=category_slug
         )
-        products = Product.objects.filter(
-            category=category_page,
-            in_stock=True,
-        )
+        products = Product.objects.filter(category=category_page)
     else:
-        products = Product.objects.all()
+        products = Product.objects.all().filter(in_stock=True)
     context = {
         'category': category_page,
         'products': products
