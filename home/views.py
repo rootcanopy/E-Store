@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect,\
+    get_object_or_404, reverse
 from django.contrib import messages
 from .forms import ContactForm
 from products.models import Category, Product
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, BadHeaderError
 
@@ -9,8 +11,22 @@ from django.core.mail import send_mail, BadHeaderError
 def home(request):
     """ VIEW TO RETURN HOME """
     products = Product.objects.all()
+    query = None
+    category = None
+
+    if request.GET:
+        if 'query' in request.GET:
+            query = request.GET['query']
+            if not query:
+                messages.error(request, "You're search is invalid")
+                return redirect(reverse('home'))
+
+            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            products = products.filter(queries)
+
     context = {
-        'products': products
+        'products': products,
+        'search': query,
     }
     return render(request, 'home/index.html', context)
 

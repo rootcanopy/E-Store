@@ -2,7 +2,7 @@ from django.shortcuts import render
 from products.models import Product
 
 
-def cart(request):
+def view_cart(request):
     """ VIEW FOR SHOPPING CART """
     return render(request, 'cart/shopping_cart.html')
 
