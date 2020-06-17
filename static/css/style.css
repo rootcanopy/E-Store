@@ -1,5 +1,8 @@
+@import url('http://fonts.googleapis.com/css?family=Ubuntu');
+
 body {
-    background: #f3f3f3
+    background: #f3f3f3;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 /*-- NAVBAR --*/
