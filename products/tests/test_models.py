@@ -21,7 +21,7 @@ class ProductModelsTest(TestCase):
         self.assertTemplateUsed(response, 'products/product_details.html')
 
     def test_get_absolute_url(self):
-        return reverse('product/product_details', kwargs={'slug': self.slug})
+        return reverse('products/product_details', kwargs={'slug': self.slug})
 
 
 class CategoryModelsTest(TestCase):
