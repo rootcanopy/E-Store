@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect,\
     get_object_or_404, reverse
 from django.contrib import messages
 from .forms import ContactForm
-from products.models import Category, Product
+from products.models import Product, Category
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, BadHeaderError
@@ -15,6 +15,11 @@ def home(request):
     category = None
 
     if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            products = products.filter(category__name__in=categories)
+            # categories = Category.objects.filter(name__in=categories)
+
         if 'query' in request.GET:
             query = request.GET['query']
             if not query:
@@ -27,28 +32,31 @@ def home(request):
     context = {
         'products': products,
         'search': query,
+        # 'current_categories': categories
     }
     return render(request, 'home/index.html', context)
 
 
-def home_page(request, category_slug=None):
-    """ view to return products on landing page """
-    category_page = None
-    categories = Category.objects.all()
-    products = Product.objects.all()
-    if category_slug:
-        category_page = get_object_or_404(
-            Category,
-            slug=category_slug
-        )
-        products = Product.objects.filter(category=category_page)
-    else:
-        products = Product.objects.all().filter(in_stock=True)
-    context = {
-        'category': category_page,
-        'products': products
-    }
-    return render(request, 'home/index.html', context)
+"""
+    def home_page(request, category_slug=None):
+        view to return products on landing page
+        category_page = None
+        categories = Category.objects.all()
+        products = Product.objects.all()
+        if category_slug:
+            category_page = get_object_or_404(
+                Category,
+                slug=category_slug
+            )
+            products = Product.objects.filter(category=category_page)
+        else:
+            products = Product.objects.all().filter(in_stock=True)
+        context = {
+            'category': category_page,
+            'products': products
+        }
+        return render(request, 'home/index.html', context)
+"""
 
 
 # USER QUERY FORM
