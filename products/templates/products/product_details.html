@@ -32,7 +32,7 @@
               </a>
             </div>
 
-				{% if product.discount > 0 %}
+				{% if product.discount %}
 					<p class="lead">
 					<span class="mr-1">
 						<del>€ {{ product.price }}</del>
@@ -52,12 +52,16 @@
 
             <p>{{ product.description }}.</p>
 
-            <form class="d-flex justify-content-left">
-              <!-- Default input -->
-              <input type="number" value="1" aria-label="add_to_cart" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
-                <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
+            <form class="form d-flex justify-content-left" action="{% url 'add_to_cart' product.id %}" method="POST">
+            {% csrf_token %}
+              <!-- ITEM QTY INPUT FORM -->
+              <input type="number" name="quantity" value="1" min="1" max="99" aria-label="add_qty" class="form-control qty_input" style="width: 100px">
+					<button class="btn btn-primary btn-md my-0 p" data-product_id="{{ product.id }}" 
+							id="decrement-qty_{{ product.id }}" type="submit">
+								Add to cart
+						<i class="fas fa-shopping-cart ml-1"></i>
+					</button>
+					<input type="hidden" name="redirect_url" value="{{ request.path }}">
 
             </form>
 

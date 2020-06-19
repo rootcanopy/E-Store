@@ -11,7 +11,7 @@ class Product(models.Model):
     image_url = models.URLField(max_length=1024, blank=True)
     author = models.CharField(max_length=50, blank=True)
     description = models.TextField(max_length=2000, blank=True)
-    ratings = models.DecimalField(max_digits=5, decimal_places=2, blank=True)
+    rating = models.DecimalField(max_digits=5, decimal_places=2, blank=True)
     discount = models.IntegerField(blank=True, null=True)
     in_stock = models.BooleanField(default=True, null=False)
 

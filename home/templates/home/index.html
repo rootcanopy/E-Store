@@ -45,9 +45,14 @@
 				<!--CARD CONTENT -->
 				<div class="card-body text-center">
 					<!-- CATEGORY & NAME -->
-					<a href="{{ product.get_absolute_url }}" class="grey-text">
+					<a href="{{ category.get_absolute_url }}" class="grey-text">
 						<h5>{{ product.category }}</h5>
 					</a>
+					{% if product.rating %}
+						<small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+					{% else %}
+						<small class="text-muted">No Rating</small>
+					{% endif %}
 					<h5>
 						<strong>
 							<a href="{{ product.get_absolute_url }}" class="dark-grey-text">{{ product.name }}
