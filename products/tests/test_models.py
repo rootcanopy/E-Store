@@ -13,7 +13,7 @@ class ProductModelsTest(TestCase):
         self.assertEqual(str(product), product.name)
 
     def test_product_details_view(self):
-        response = self.client.get(self.product.get_absolute_url())
+        response = self.client.get(self.product_details.get_absolute_url())
         no_response = self.client.get('/books/12345/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(no_response.status_code, 404)

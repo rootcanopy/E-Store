@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-md-6 mb-4">
 
-          <img src="{{ product.image_url }}" class="img-fluid" alt="{{ product.name }}">
+          <img src="{{ product.image_url }}" class="img-fluid mt-5" alt="{{ product.name }}">
 
         </div>
 
@@ -32,17 +32,18 @@
               </a>
             </div>
 
-				{% if product.discount < 0 %}
+				{% if product.discount > 0 %}
 					<p class="lead">
 					<span class="mr-1">
-						<del>{{ product.price }}</del>
+						<del>€ {{ product.price }}</del>
 					</span>
-					<span>{{ product.discount }}</span>
+          <br>
+					<span>€ {{ product.discount }}</span>
 					</p>
 				{% else %}
 					<p class="lead">
 					<span class="mr-1">
-						{{ product.price }}
+						€ {{ product.price }}
 					</span>
 					</p>
 				{% endif %}
