@@ -18,7 +18,7 @@ class ProductModelsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(no_response.status_code, 404)
         self.assertContains(response, 'Harry Potter')
-        self.assertTemplateUsed(response, 'products/product_details.html')
+        self.assertTemplateUsed(response, 'product_details.html')
 
     def test_get_absolute_url(self):
         return reverse('products/product_details', kwargs={'slug': self.slug})

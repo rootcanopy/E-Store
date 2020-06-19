@@ -12,7 +12,7 @@ class Product(models.Model):
     author = models.CharField(max_length=50, blank=True)
     description = models.TextField(max_length=2000, blank=True)
     ratings = models.DecimalField(max_digits=5, decimal_places=2, blank=True)
-    discounted = models.IntegerField(blank=True, null=True)
+    discount = models.IntegerField(blank=True, null=True)
     in_stock = models.BooleanField(default=True, null=False)
 
     class Meta:

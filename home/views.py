@@ -23,7 +23,7 @@ def home(request):
         if 'query' in request.GET:
             query = request.GET['query']
             if not query:
-                messages.error(request, "You're search is invalid")
+                messages.error(request, "Your search is invalid")
                 return redirect(reverse('home'))
 
             queries = Q(name__icontains=query) | Q(description__icontains=query)
