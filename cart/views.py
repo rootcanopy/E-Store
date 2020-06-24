@@ -10,6 +10,15 @@ def view_cart(request):
     return render(request, 'cart/shopping_cart.html')
 
 
+"""
+    def _cart_id(request):
+        cart = request.session.session_key
+        if not cart:
+            cart = request.session.create()
+        return cart
+"""
+
+
 def add_to_cart(request, product_id):
     """ ADD A PRODUCT AND OR QTY TO THE CART """
     quantity = int(request.POST.get('quantity'))
@@ -24,5 +33,9 @@ def add_to_cart(request, product_id):
         messages.info(request, "Product added to your bag.")
 
     request.session['cart'] = cart
-    print(request.session['cart'])
     return redirect(redirect_url)
+
+
+def remove_from_cart(request, product_id):
+    """ VIEW TO REMOVE A PRODUCT FROM CART """
+    

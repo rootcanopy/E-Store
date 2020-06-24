@@ -83,6 +83,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'products.context_processors.nav_links',
                 'cart.cart_context.cart_contents',
+                # 'cart.cart_context.counter',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',

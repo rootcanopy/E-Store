@@ -7,41 +7,39 @@
 
 <section>
 	<div class="container">
-		<div class="table-responsive text-nowrap mt-5">
+		<div class="table-responsive mt-5">
 			<h2>Order Summary</h2>
-			<table class="table">
+			<table class="table table-sm">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
 						<th scope="col">Product name</th>
 						<th scope="col">Price</th>
-						<th scope="col">Qty</th>
+						<th scope="col">Quantity</th>
 						<th scope="col">Total Price</th>
 					</tr>
 				</thead>
 				<tbody>
-					{% for order_item in object.products.all %}
+					{% for order_item in order_items %}
 					<tr>
-						<th scope="row">{{ forloop.counter }}</th>
 						<td>{{ order_item.product.name }}</td>
-						<td>{{ order_item.product.price }}</td>
+						<td> € {{ order_item.product.price }}</td>
 						<td>
 							<a href="">
-								<i class="fas fa-minus-circle mr-2"></i>
+								<i class="fas fa-minus mr-2"></i>
 							</a>
 							{{ order_item.quantity }}
 							<a href="">
-								<i class="fas fa-plus-circle ml-2"></i>
+								<i class="fas fa-plus ml-2"></i>
 							</a>
 						</td>
 						<td>
 							{% if order_item.product.discount %}
-							€{{ order_item.total_discount_product_price }}
+								€{{ order_item.total_discount_product_price }}
 							<span class="badge badge-primary">
 								Saving <br> €{{ order_item.amount_saved }}
 							</span>
 							{% else %}
-							€{{ order_item.total_product_price }}
+								€{{ order_item.grand_total }}
 							{% endif %}
 							<a style='color: red;' href="">
 								<i class="fas fa-trash float-right"></i>
@@ -67,7 +65,7 @@
 						<td><b>€-{{ object.voucher.amount }}</b></td>
 					</tr>
 					{% endif %}
-
+				
 					{% if object.grand_total %}
 					<tr>
 						<td colspan="4"><b>Order Total</b></td>
@@ -91,4 +89,5 @@
 	</div>
 
 </section>
+
 {% endblock %}
