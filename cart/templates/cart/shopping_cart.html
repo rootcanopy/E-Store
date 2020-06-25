@@ -39,7 +39,7 @@
 								Saving <br> €{{ order_item.amount_saved }}
 							</span>
 							{% else %}
-								€{{ order_item.grand_total }}
+								€{{ order_item.product.item_total }}
 							{% endif %}
 							<a style='color: red;' href="">
 								<i class="fas fa-trash float-right"></i>

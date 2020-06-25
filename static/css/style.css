@@ -16,6 +16,12 @@ img.hero {
     width: 100%;
 }
 
+/*-- MESSAGES --*/
+
+.messages {
+    margin-top: 2em;
+}
+
 
 /*-- PRODUCT CARD --*/
 .col-item {

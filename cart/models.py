@@ -8,7 +8,7 @@ class OrderItem(models.Model):
     # order = models.ForeignKey(Order, null=False, blank=False,
     #                          on_delete=models.CASCADE, related_name='lineitems')
     quantity = models.IntegerField(default=1)
-    item_total = models.DecimalField(max_digits=6, null=False, default=True, decimal_places=2)
+    total = models.DecimalField(max_digits=6, null=False, default=True, decimal_places=2)
 
     def __str__(self):
         return str(self.id)

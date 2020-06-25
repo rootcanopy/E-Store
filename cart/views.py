@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import (
+    render, redirect, reverse
+)
 from products.models import Product
 from .models import OrderItem
 from django.contrib import messages
@@ -6,7 +8,6 @@ from django.contrib import messages
 
 def view_cart(request):
     """ VIEW FOR SHOPPING CART """
-    print(request.session)
     return render(request, 'cart/shopping_cart.html')
 
 
@@ -38,4 +39,4 @@ def add_to_cart(request, product_id):
 
 def remove_from_cart(request, product_id):
     """ VIEW TO REMOVE A PRODUCT FROM CART """
-    
+    pass
