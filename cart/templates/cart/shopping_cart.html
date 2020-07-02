@@ -21,6 +21,9 @@
 				<tbody>
 					{% for order_item in order_items %}
 					<tr>
+						<td class="">
+							<img class="img-thumbnail" src="{{ order_item.product.image_url }}">
+						</td>
 						<td>{{ order_item.product.name }}</td>
 						<td> € {{ order_item.product.price }}</td>
 						<td>
