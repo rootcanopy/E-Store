@@ -6,7 +6,7 @@ from products.models import Product
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     # order = models.ForeignKey(Order, null=False, blank=False,
-    #                          on_delete=models.CASCADE, related_name='lineitems')
+    #                          on_delete=models.CASCADE, related_name='products')
     quantity = models.IntegerField(default=1)
     total = models.DecimalField(max_digits=6, null=False, default=True, decimal_places=2)
 

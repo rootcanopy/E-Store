@@ -8,43 +8,54 @@
 <section>
 	<div class="container">
 		<div class="table-responsive mt-5">
-			<h2>Order Summary</h2>
+			<h2 class="text-center mb-3">Order Summary</h2>
 			<table class="table table-sm">
 				<thead>
 					<tr>
+						<th scope="col"></th>
 						<th scope="col">Product name</th>
 						<th scope="col">Price</th>
 						<th scope="col">Quantity</th>
-						<th scope="col">Total Price</th>
+						<th scope="col">Total</th>
+						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for order_item in order_items %}
 					<tr>
 						<td class="">
-							<img class="img-thumbnail" src="{{ order_item.product.image_url }}">
+							<img class="img-thumbnail w-100 d-block" src="{{ order_item.product.image_url }}">
 						</td>
 						<td>{{ order_item.product.name }}</td>
-						<td> € {{ order_item.product.price }}</td>
+						<td> €{{ order_item.product.price }}x</td>
 						<td>
-							<a href="">
-								<i class="fas fa-minus mr-2"></i>
-							</a>
-							{{ order_item.quantity }}
-							<a href="">
-								<i class="fas fa-plus ml-2"></i>
-							</a>
+							<form class="form update-form d-flex justify-content-left" action="{% url 'update_cart' order_item.product_id %}" method="POST">
+							{% csrf_token %}
+							
+								<input type="number" name="quantity" value="{{ order_item.quantity }}" 
+										min="1" max="99" aria-label="add_qty" class="form-control qty_input" 
+										style="width: 60px">
+									
+									<button class="btn btn-primary btn-sm my-0" data-product_id="{{ order_item.product_id }}" 
+											id="decrement-qty_{{ order_item.product_id }}" type="submit">
+										<i class="fa fa-refresh" aria-hidden="true"></i>
+									</button>
+									
+								<input type="hidden" name="redirect_url" value="{{ request.path }}">
+
+							</form>
 						</td>
 						<td>
 							{% if order_item.product.discount %}
-								€{{ order_item.total_discount_product_price }}
+								€{{ order_item.discounted_product_price }}
 							<span class="badge badge-primary">
 								Saving <br> €{{ order_item.amount_saved }}
 							</span>
 							{% else %}
-								€{{ order_item.product.item_total }}
+								€{{ order_item.product.price }}
 							{% endif %}
-							<a style='color: red;' href="">
+							<a style='color: red;' id="remove_{{ order_item.product_id }}" 
+									href="{% url 'remove_from_cart' order_item.product_id %}">
 								<i class="fas fa-trash float-right"></i>
 							</a>
 						</td>
@@ -92,5 +103,9 @@
 	</div>
 
 </section>
+{% block postloadjs %}
+	{{ block.super }}
+
+{% endblock %}
 
 {% endblock %}
