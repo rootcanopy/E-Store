@@ -6,106 +6,87 @@
 {% block content %}
 
 <section>
-	<div class="container">
-		<div class="table-responsive mt-5">
-			<h2 class="text-center mb-3">Order Summary</h2>
-			<table class="table table-sm">
-				<thead>
-					<tr>
-						<th scope="col"></th>
-						<th scope="col">Product name</th>
-						<th scope="col">Price</th>
-						<th scope="col">Quantity</th>
-						<th scope="col">Total</th>
-						<th scope="col"></th>
-					</tr>
-				</thead>
-				<tbody>
+	<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col" class="text-right">Price</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
 					{% for order_item in order_items %}
-					<tr>
-						<td class="">
-							<img class="img-thumbnail w-100 d-block" src="{{ order_item.product.image_url }}">
-						</td>
-						<td>{{ order_item.product.name }}</td>
-						<td> €{{ order_item.product.price }}x</td>
-						<td>
-							<form class="form update-form d-flex justify-content-left" action="{% url 'update_cart' order_item.product_id %}" method="POST">
-							{% csrf_token %}
-							
-								<input type="number" name="quantity" value="{{ order_item.quantity }}" 
-										min="1" max="99" aria-label="add_qty" class="form-control qty_input" 
-										style="width: 60px">
-									
-									<button class="btn btn-primary btn-sm my-0" data-product_id="{{ order_item.product_id }}" 
-											id="decrement-qty_{{ order_item.product_id }}" type="submit">
-										<i class="fa fa-refresh" aria-hidden="true"></i>
-									</button>
-									
-								<input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        <tr>
+                            <td><img class="cart_p_image" src="{{ order_item.product.image_url }}" /> </td>
+                            <td> {{ order_item.product.name }}</td>
 
-							</form>
-						</td>
-						<td>
-							{% if order_item.product.discount %}
-								€{{ order_item.discounted_product_price }}
-							<span class="badge badge-primary">
-								Saving <br> €{{ order_item.amount_saved }}
-							</span>
-							{% else %}
-								€{{ order_item.product.price }}
-							{% endif %}
-							<a style='color: red;' id="remove_{{ order_item.product_id }}" 
-									href="{% url 'remove_from_cart' order_item.product_id %}">
-								<i class="fas fa-trash float-right"></i>
-							</a>
-						</td>
-					</tr>
-					{% empty %}
-					<tr>
-						<td colspan="5">Your bag is empty </td>
-					</tr>
-					<tr>
-						<td colspan="5">
-							<a class="btn btn-warning float-right ml-2" href="/">
-								Continue Shoppiing
-							</a>
-						</td>
-					</tr>
+                            <td>
+								<form class="form update-form d-flex justify-content-left" action="{% url 'update_cart' order_item.product_id %}" method="POST">
+								{% csrf_token %}
+								
+									<input type="number" name="quantity" value="{{ order_item.quantity }}" 
+											min="1" max="99" aria-label="add_qty" class="form-control qty_input" 
+											style="width: 60px">
+										
+										<button class="btn btn-primary btn-sm my-0" data-product_id="{{ order_item.product_id }}" 
+												id="decrement-qty_{{ order_item.product_id }}" type="submit">
+											<i class="fa fa-refresh" aria-hidden="true"></i>
+										</button>
+										
+									<input type="hidden" name="redirect_url" value="{{ request.path }}">
+
+								</form>
+							</td>
+                            <td class="text-right">€ {{ order_item.product.price }}</td>
+                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Sub-Total</td>
+                            <td class="text-right">€</td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Shipping</td>
+                            <td class="text-right">€</td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right"><strong>€</strong></td>
+                        </tr>
 					{% endfor %}
-
-					{% if object.voucher %} # TODO:
-					<tr>
-						<td colspan="4"><b>Voucher</b></td>
-						<td><b>€-{{ object.voucher.amount }}</b></td>
-					</tr>
-					{% endif %}
-				
-					{% if object.grand_total %}
-					<tr>
-						<td colspan="4"><b>Order Total</b></td>
-						<td><b>€{{ object.grand_total }}</b></td>
-					</tr>
-					<tr>
-						<td colspan="5">
-							<a class="btn btn-warning float-right ml-2" href="">
-								Proceed to checkout
-							</a>
-							<a class="btn btn-primary float-right ml-auto" href="/">
-								Continue Shoppiing
-							</a>
-						</td>
-					</tr>
-					{% endif %}
-				</tbody>
-			</table>
-		</div>
-
-	</div>
-
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <button class="btn btn-block btn-info">Continue Shopping</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </section>
-{% block postloadjs %}
-	{{ block.super }}
 
-{% endblock %}
-
-{% endblock %}
+{% endblock%}

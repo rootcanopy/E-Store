@@ -116,6 +116,12 @@ img.hero {
     margin-right: 10px;
 }
 
+/*-- SHOPPING CART --*/
+img.cart_p_image{
+    height: 70px;
+    width: 50px;
+}
+
 /*-- FOOTER SOCIAL --*/
 
 footer-social {
