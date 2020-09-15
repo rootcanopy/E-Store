@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Cart {% endblock title %}
+{% block title %} Your Cart {% endblock title %}
 
 {% block content %}
 
 <section>
 	<div class="container mb-4">
+        <h2 class="cart_head m-4 text-center"> Your Shopping Cart </h2>
+
     <div class="row">
         <div class="col-12">
             <div class="table-responsive">
@@ -20,6 +22,7 @@
                             <th> </th>
                         </tr>
                     </thead>
+                    <!-- ITEM LIST -->
                     <tbody>
 					{% for order_item in order_items %}
                         <tr>
@@ -42,11 +45,17 @@
 									<input type="hidden" name="redirect_url" value="{{ request.path }}">
 
 								</form>
-							</td>
+                            </td>
+                            <!-- PRICE OF ITEMS (ALL) -->
                             <td class="text-right">€ {{ order_item.product.price }}</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                            <!-- REMOVE BUTTON -->
+                            <td class="text-right">
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
                         </tr>
-
+                    {% endfor %}
                         <tr>
                             <td></td>
                             <td></td>
@@ -70,16 +79,18 @@
                             <td><strong>Total</strong></td>
                             <td class="text-right"><strong>€</strong></td>
                         </tr>
-					{% endfor %}
+
                     </tbody>
                 </table>
             </div>
         </div>
+        <!-- NAV BUTTONS -->
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
                     <button class="btn btn-block btn-info">Continue Shopping</button>
                 </div>
+
                 <div class="col-sm-12 col-md-6 text-right">
                     <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
                 </div>
