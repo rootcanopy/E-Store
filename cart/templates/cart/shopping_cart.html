@@ -9,7 +9,7 @@
 	<div class="container mb-4">
         <h2 class="cart_head m-4 text-center"> Your Shopping Cart </h2>
 
-    <div class="row">
+    <div class="row cart-product">
         <div class="col-12">
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -32,18 +32,19 @@
                             <td>
 								<form class="form update-form d-flex justify-content-left" action="{% url 'update_cart' order_item.product_id %}" method="POST">
 								{% csrf_token %}
-								
-									<input type="number" name="quantity" value="{{ order_item.quantity }}" 
-                                            min="1" max="99" aria-label="add_qty" class="form-control qty_input"
-											style="width: 60px">
-										
-										<button class="btn btn-primary btn-sm my-0" data-product_id="{{ order_item.product_id }}" 
-												id="id_qty_{{ order_item.product_id }}" type="number">
-											<i class="fa fa-refresh" aria-hidden="true"></i>
-										</button>
-										
-									<input type="hidden" name="redirect_url" value="{{ request.path }}">
-
+                                    
+                                    <div class="quantity">
+                                        <input type="number" name="quantity" value="{{ order_item.quantity }}" 
+                                                min="1" max="99" aria-label="add_qty" class="form-control qty_input"
+                                                style="width: 60px">
+                                            
+                                            <button class="btn btn-primary btn-sm my-0" data-product_id="{{ order_item.product_id }}" 
+                                                    id="id_qty_{{ order_item.product_id }}" type="number">
+                                                <i class="fa fa-refresh" aria-hidden="true"></i>
+                                            </button>
+                                            
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    </div>
 								</form>
                             </td>
                             <!-- PRICE OF ITEMS (ALL) -->
@@ -63,7 +64,7 @@
                             <td></td>
                             <td></td>
                             <td>Sub-Total</td>
-                            <td class="text-right">€ {{ total }}</td>
+                            <td class="text-right grand-subtotal">€ {{ total }}</td>
                         </tr>
 
                         <tr>
@@ -81,7 +82,9 @@
                             <td></td>
                             <td></td>
                             <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>€ {{ grand_total|floatformat:2 }}</strong></td>
+                            <td class="text-right final-value total-value" id="grand-total">
+                                <strong>€ {{ grand_total|floatformat:2 }}</strong>
+                            </td>
                         </tr>
 
                     </tbody>

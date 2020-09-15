@@ -48,11 +48,11 @@ wireframes
 
 ## Technolgoies Used
 
-Scrapy - Python module
-Vscode
-Kaggle for dataset
-bootstrap
 
+
+## BUGS
+
+Jquery easing loop, changed min CDN to uncompressed
 
 ## Testing
 
@@ -62,22 +62,3 @@ bootstrap
 
 ## Media & Resources
 
-books for sale
-
-user registeration - login 
-logout
-
-https://www.obeythetestinggoat.com/book/chapter_explicit_waits_1.html
-
-
-purchase
-
-javascript sleekness - navbar - scroll
-
-
-//////////////////
-blog with positive news and ability to comment
-
-building community
-
-./manage.py graph_models -a -o booktime_models.png
