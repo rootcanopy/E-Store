@@ -1,0 +1,16 @@
+<script type="text/javascript">
+    //UPDATE CART QTY
+
+    //ASSIGN ACTIONS
+    $('.quantity input').change(function(){
+        updateQuantity(this);
+    })
+
+    $('.remove button').click(function(){
+        removeProduct(this);
+    })
+
+    $(document).ready(function(){
+        updateProductSums();
+    })
+</script>

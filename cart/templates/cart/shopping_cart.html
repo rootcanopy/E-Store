@@ -26,7 +26,7 @@
                     <tbody>
 					{% for order_item in order_items %}
                         <tr>
-                            <td><img class="cart_p_image" src="{{ order_item.product.image_url }}" /> </td>
+                            <td><img class="cart_p_image product-frame" src="{{ order_item.product.image_url }}" /> </td>
                             <td> {{ order_item.product.name }}</td>
 
                             <td>
@@ -34,11 +34,11 @@
 								{% csrf_token %}
 								
 									<input type="number" name="quantity" value="{{ order_item.quantity }}" 
-											min="1" max="99" aria-label="add_qty" class="form-control qty_input" 
+                                            min="1" max="99" aria-label="add_qty" class="form-control qty_input"
 											style="width: 60px">
 										
 										<button class="btn btn-primary btn-sm my-0" data-product_id="{{ order_item.product_id }}" 
-												id="decrement-qty_{{ order_item.product_id }}" type="submit">
+												id="id_qty_{{ order_item.product_id }}" type="number">
 											<i class="fa fa-refresh" aria-hidden="true"></i>
 										</button>
 										
@@ -50,9 +50,11 @@
                             <td class="text-right">€ {{ order_item.product.price }}</td>
                             <!-- REMOVE BUTTON -->
                             <td class="text-right">
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
+                                <div class="remove">
+                                    <button class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     {% endfor %}
@@ -61,15 +63,17 @@
                             <td></td>
                             <td></td>
                             <td>Sub-Total</td>
-                            <td class="text-right">€</td>
+                            <td class="text-right">€ {{ total }}</td>
                         </tr>
 
                         <tr>
+                        {% if free_delivery_allowance > 0 %}
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Shipping</td>
-                            <td class="text-right">€</td>
+                            <td class="text-right">€ {{ free_delivery_delta }}</td>
+                        {% endif %}
                         </tr>
 
                         <tr>
@@ -77,7 +81,7 @@
                             <td></td>
                             <td></td>
                             <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>€</strong></td>
+                            <td class="text-right"><strong>€ {{ grand_total|floatformat:2 }}</strong></td>
                         </tr>
 
                     </tbody>
@@ -101,3 +105,8 @@
 </section>
 
 {% endblock%}
+
+{% block postloadjs %}
+    {{ block.super }}
+
+{% endblock %}
