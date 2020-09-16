@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'cart/css/cart.css' %}">
+{% endblock %}
+
+{% block title %} Your Cart {% endblock title %}
+
+{% block content %}
+
+<main class="container">
+    <div class="cart">
+      <div class="cart-module">
+
+        <label for="promo-code">Enter a promotional code</label>
+
+        <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
+        
+        <button class="promo-code-cta">Apply</button>
+      </div>
+
+      <div class="cart-labels">
+        <ul>
+          <li class="product product-heading">Product</li>
+          <li class="price">Price</li>
+          <li class="quantity">Quantity</li>
+          <li class="subtotal">Subtotal</li>
+        </ul>
+      </div>
+
+    {% for order_item in order_items %}
+      <div class="cart-product">
+        <div class="product">
+
+          <div class="product-image">
+            <img src="{{ order_item.product.image_url }}" alt="{{ order_item.product.description }}" class="product-frame">
+          </div>
+
+          <div class="product-details">
+            <h1><strong><span class="product-quantity"> {{ order_item.quantity }}</span> x {{ order_item.product.name }}</strong></h1>
+            <p><strong></strong></p>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="price"> {{ order_item.product.price }}</div>
+
+        <div class="quantity">
+          <input type="number" value="{{ order_item.quantity }}" min="1" class="quantity-field">
+        </div>
+
+        <div class="subtotal grand-subtotal"> {{ total }} </div>
+
+        <div class="remove">
+          <button>Remove</button>
+        </div>
+      </div>
+    {% endfor %}
+
+    <aside>
+      <div class="summary">
+        <div class="summary-total-items">
+            <span class="total-products"></span> Products in your Cart
+        </div>
+        
+        <div class="summary-subtotal">
+          <div class="subtotal-title">Subtotal</div>
+          <div class="subtotal-value final-value" id="cart-subtotal">130.00</div>
+          
+          <div class="summary-promo hide">
+            <div class="promo-title">Promotion</div>
+            <div class="promo-value final-value" id="cart-promo"></div>
+          </div>
+        </div>
+
+        <div class="summary-delivery">
+          <select name="delivery-collection" class="summary-delivery-selection">
+              <option value="0" selected="selected">Select Collection or Delivery</option>
+             <option value="collection">Collection</option>
+             <option value="first-class">Royal Mail 1st Class</option>
+             <option value="second-class">Royal Mail 2nd Class</option>
+             <option value="signed-for">Royal Mail Special Delivery</option>
+          </select>
+        </div>
+
+        <div class="summary-total">
+          <div class="total-title">Total</div>
+          <div class="total-value final-value" id="cart-total">
+                <strong> {{ grand_total|floatformat:2 }}</strong>
+          </div>
+        </div>
+
+        <div class="summary-checkout">
+          <button class="checkout-cta">Go to Secure Checkout</button>
+        </div>
+
+      </div>
+    </aside>
+    </div>
+</main>
+
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+   <script type="text/javascript" src="{% static 'cart/js/cart.js' %}"></script>
+
+{% endblock %}

@@ -53,6 +53,7 @@ wireframes
 ## BUGS
 
 Jquery easing loop, changed min CDN to uncompressed
+jquery $ undefined, changed the layout of the cdns to top of base.html works, but totals now returning NaN
 
 ## Testing
 

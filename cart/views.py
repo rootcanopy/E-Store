@@ -9,7 +9,7 @@ from django.contrib import messages
 
 def view_cart(request):
     """ VIEW FOR SHOPPING CART """
-    return render(request, 'cart/shopping_cart.html')
+    return render(request, 'cart/cart.html')
 
 
 def add_to_cart(request, product_id):
