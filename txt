@@ -24,3 +24,9 @@
           <button>Remove</button>
         </div>
       </div>
+    
+            <input data-product_id="{{ order_item.product_id }}" 
+              id="id_qty_{{ order_item.product_id }}"
+              type="number" id="adjust_cart_qty_{{ order_item.product_id }}"
+              value="{{ order_item.quantity }}" min="1" max="90"
+              class="quantity-field qty_input">

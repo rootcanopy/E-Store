@@ -195,6 +195,14 @@ li.subtotal:before {
   text-transform: uppercase;
 }
 
+.update-link {
+  display: none;
+  position: fixed;
+  left: 1.5rem;
+  float: left;
+  text-align: center;
+}
+
 .item-heading {
   padding-left: 4.375rem;
   -webkit-box-sizing: border-box;
@@ -226,7 +234,7 @@ li.subtotal:before {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
+/*
 .quantity-field {
   background-color: #ccc;
   border: 1px solid #aaa;
@@ -235,7 +243,72 @@ li.subtotal:before {
   padding: 2px;
   width: 3.75rem;
 }
+*/
+/* QUANTITY INPUT */
+.quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
 
+.decrement_qty,
+.increment_qty {
+  display: inline-block;
+  width: 22px;
+  height: 23px;
+  margin: 0;
+  background: #dee0ee;
+  text-decoration: none;
+  text-align: center;
+  line-height: 23px;
+}
+.decrement_qty:hover,
+.increment_qty:hover {
+  background: #575b71;
+  color: #fff;
+} 
+.decrement_qty {
+  border-radius: 3px 0 0 3px;
+}
+.increment_qty {
+  border-radius: 0 3px 3px 0;
+}
+.qty_input {
+  width: 32px;
+  height: 23px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-top: 2px solid #dee0ee;
+  border-bottom: 2px solid #dee0ee;
+  border-left: 1px solid #dee0ee;
+  border-right: 2px solid #dee0ee;
+  background: #fff;
+  color: #8184a1;
+}
+.decrement_qty:link,
+.increment_qty:link {
+  color: #8184a1;
+} 
+.decrement_qty:visited,
+.increment_qty:visited {
+  color: #fff;
+}
+/* REMOVE ARROWS/SPINNERS */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* SIDE SUMMARY */
 aside {
   float: right;
   position: relative;

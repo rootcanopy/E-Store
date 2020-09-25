@@ -1,3 +1,27 @@
+// QTY INPUT BOX
+/*
+$(document).ready(function() {
+  const minus = $('.decrement_qty');
+  const plus = $('.increment_qty');
+  const input = $('.qty_input');
+  minus.click(function(e) {
+    e.preventDefault();
+    var value = input.val();
+    if (value > 1) {
+      value --;
+    }
+    input.val(value);
+  });
+  
+  plus.click(function(e) {
+    e.preventDefault();
+    var value = input.val();
+    value ++;
+    input.val(value);
+  })
+});
+*/
+
 // SET VALUES
 var promoCode;
 var promoPrice;
@@ -16,8 +40,8 @@ $(document).ready(function() {
   updateSumItems();
 });
 
+// PROMO DISCOUNT ELEMENT
 $('.promo-code-cta').click(function() {
-
   promoCode = $('#promo-code').val();
 
   if (promoCode == '10off' || promoCode == '10OFF') {
@@ -46,10 +70,8 @@ function recalculateCart(onlyTotal) {
   $('.basket-product').each(function() {
     subtotal += parseFloat($(this).children('.subtotal').text());
   });
-
   // CALCULATE TOTALS
   var total = subtotal;
-
   // IF VALID PROMOCODE = 10, AND SUBTOTAL < 10 SUBTRACT FROM TOTAL
   var promoPrice = parseFloat($('.promo-value').text());
   if (promoPrice) {
@@ -86,7 +108,8 @@ function recalculateCart(onlyTotal) {
 // UPDATE QUANTITY
 function updateQuantity(quantityInput) {
   // CALCULATE LINE PRICE
-  var productRow = $(quantityInput).parent().parent().parent();
+  var productRow = $(quantityInput).closest('.input-group').find('.qty-input')[0];
+  // var productRow = $(quantityInput).parent().parent().parent();
   var price = parseFloat(productRow.children('.price').text());
   var quantity = $(quantityInput).val();
   var linePrice = price * quantity;
@@ -102,6 +125,7 @@ function updateQuantity(quantityInput) {
   productRow.find('.item-quantity').text(quantity);
   updateSumItems();
 }
+
 
 function updateSumItems() {
   var sumItems = 0;
@@ -136,7 +160,7 @@ $('.remove-link').click(function(e) {
 })
 
 // UPDATE CART 
-$('.adjust_cart_qty').change(function (e) {
+$('.adjust_cart_qty_').change(function(e) {
   e.preventDefault();
   var closestInput = $(this).closestInput('.input').find('.adjust_cart_qty')[0];
   var currentValue = parseInt($(closestInput).val())

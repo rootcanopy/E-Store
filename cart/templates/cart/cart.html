@@ -48,13 +48,31 @@
         <div class="quantity">
           <form class="form update-form" action="{% url 'update_cart' order_item.product_id %}" methods="POST">
             {% csrf_token %}
+              <div class="form-group">
+                <div class="input-group">
+                
+                  <div class="input-group-prepend">
+                    <a href="" class="decrement_qty"
+                        data-product_id="{{ order_item.product_id }}"
+                        id="decrement-qty_{{ order_item.product_id }}">
+                      <span> - </span>
+                    </a>
+                  </div>
 
-            <input data-product_id="{{ order_item.product_id }}" 
-              id="id_qty_{{ order_item.product_id }}"
-              type="number" id="adjust_cart_qty_{{ order_item.product_id }}"
-              value="{{ order_item.quantity }}" min="1" max="90"
-              class="quantity-field qty_input">
+                    <input name="quantity" type="number" min="1" max="99"
+                        class="form-control qty_input" value="{{ order_item.quantity }}"
+                           id="id_qty_{{ order_item.product_id }}">
 
+                  <div class="input-group-append">
+                    <a href="{% url 'update_cart' order_item.product_id %}" class="increment_qty"
+                        data-product_id="{{ order_item.product_id }}"
+                        id="increment-qty_{{ order_item.product_id }}">
+                      <span> + </span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
           </form>
         </div>
 
@@ -97,7 +115,7 @@
           <div class="total-title">Total</div>
           <div class="total-value final-value" id="basket-total"> {{ grand_total }} </div>
         </div>
-        
+
         <div class="summary-checkout">
           <button class="checkout-cta">Go to Secure Checkout</button>
         </div>
