@@ -55,7 +55,10 @@
             <form class="form d-flex justify-content-left" action="{% url 'add_to_cart' product.id %}" method="POST">
             {% csrf_token %}
               
-              <input type="number" name="quantity" value="1" min="1" max="99" aria-label="add_qty" class="form-control qty_input" style="width: 100px">
+              <input type="number" name="quantity" value="1" min="1" max="99"
+                    aria-label="add_qty" data-product_id="{{ product.id }}"
+                    id="id_qty_{{ product_id }}"
+                    class="form-control qty_input" style="width: 100px">
                 
                 <button class="btn btn-primary btn-md my-0 p" data-product_id="{{ product.id }}" 
                     id="decrement-qty_{{ product.id }}" type="submit">
