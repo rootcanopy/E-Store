@@ -1,5 +1,3 @@
-
-
 @charset "utf-8";
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600);
@@ -56,22 +54,22 @@ button:focus {
 }
 
 img,
-.cart-module,
-.cart-labels,
-.cart-product {
+.basket-module,
+.basket-labels,
+.basket-product {
   width: 100%;
 }
 
 input,
 button,
-.cart,
-.cart-module,
-.cart-labels,
-.product,
+.basket,
+.basket-module,
+.basket-labels,
+.item,
 .price,
 .quantity,
 .subtotal,
-.cart-product,
+.basket-product,
 .product-image,
 .product-details {
   float: left;
@@ -98,7 +96,7 @@ main {
   width: 960px;
 }
 
-.cart,
+.basket,
 aside {
   padding: 0 1rem;
   -webkit-box-sizing: border-box;
@@ -106,11 +104,11 @@ aside {
   box-sizing: border-box;
 }
 
-.cart {
+.basket {
   width: 70%;
 }
 
-.cart-module {
+.basket-module {
   color: #111;
 }
 
@@ -143,7 +141,7 @@ label {
   padding: 0.6875rem 1.25rem 0.625rem;
 }
 
-.cart-labels {
+.basket-labels {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   margin-top: 1.625rem;
@@ -166,7 +164,7 @@ li.subtotal:before {
   content: '';
 }
 
-.product {
+.item {
   width: 55%;
 }
 
@@ -197,14 +195,14 @@ li.subtotal:before {
   text-transform: uppercase;
 }
 
-.product-heading {
+.item-heading {
   padding-left: 4.375rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-.cart-product {
+.basket-product {
   border-bottom: 1px solid #ccc;
   padding: 1rem 0;
   position: relative;
@@ -247,6 +245,7 @@ aside {
 .summary {
   background-color: #eee;
   border: 1px solid #aaa;
+  margin-top: 5.5rem;
   padding: 1rem;
   position: fixed;
   width: 250px;
@@ -341,19 +340,20 @@ aside {
 
 @media screen and (max-width: 640px) {
   aside,
-  .cart,
+  .basket,
   .summary,
-  .product,
+  .item,
+  .update,
   .remove {
     width: 100%;
   }
-  .cart-labels {
+  .basket-labels {
     display: none;
   }
-  .cart-module {
+  .basket-module {
     margin-bottom: 1rem;
   }
-  .product {
+  .item {
     margin-bottom: 1rem;
   }
   .product-image {
@@ -373,6 +373,7 @@ aside {
   .quantity-field {
     float: none;
   }
+  .update,
   .remove {
     bottom: 0;
     text-align: left;
@@ -383,7 +384,7 @@ aside {
     padding: 0;
   }
   .summary {
-    margin-top: 1.25rem;
+    margin-top: auto;
     position: relative;
   }
 }

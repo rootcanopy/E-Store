@@ -20,11 +20,11 @@ def cart_contents(request):
         order_items.append({
             'product_id': product_id,
             'quantity': quantity,
-            'product': product
+            'product': product,
         })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE)
+        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_allowance = settings.FREE_DELIVERY_THRESHOLD - total
     else:
         delivery = 0
