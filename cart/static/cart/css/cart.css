@@ -249,7 +249,7 @@ li.subtotal:before {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  /*padding: 0;*/
 }
 
 .decrement_qty,
@@ -290,12 +290,14 @@ li.subtotal:before {
 .decrement_qty:link,
 .increment_qty:link {
   color: #8184a1;
-} 
+}
+/*
 .decrement_qty:visited,
 .increment_qty:visited {
   color: #fff;
-}
-/* REMOVE ARROWS/SPINNERS */
+}*/
+
+/* REMOVE ARROWS/SPINNERS FROM INPUT */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

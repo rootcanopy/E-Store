@@ -12,7 +12,7 @@ def home(request):
     """ VIEW TO RETURN HOME """
     products = Product.objects.all()
     query = None
-    category = None
+    categories = None
 
     if request.GET:
         if 'category' in request.GET:

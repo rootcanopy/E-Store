@@ -63,6 +63,30 @@ $('.promo-code-cta').click(function() {
   }
 });
 
+$(document).ready(function(){
+  var quantitiy = 0;
+     $('.increment_qty').click(function(e){
+        // STOP ACTING LIKE A BUTTON
+        e.preventDefault();
+        // GET THE QTY FIELD
+        var quantity = parseInt($('#id_qty_').val());
+        // IF ITEM != UNDEFINED
+          $('#quantity').val(quantity + 1);
+          // INCREMENT
+      });
+      $('.decrement_qty').click(function(e){
+      // STOP ACTING LIKE A BUTTON
+      e.preventDefault();
+      // GET THE QTY FIELD
+      var quantity = parseInt($('#id_qty_').val());
+      // IF ITEM != UNDEFINED
+      // DECREMENT
+      if(quantity > 0){
+        $('#quantity').val(quantity - 1);
+    }
+  });
+});
+
 // RECALCULATE CART
 function recalculateCart(onlyTotal) { 
   var subtotal = 0;
@@ -108,8 +132,8 @@ function recalculateCart(onlyTotal) {
 // UPDATE QUANTITY
 function updateQuantity(quantityInput) {
   // CALCULATE LINE PRICE
-  var productRow = $(quantityInput).closest('.input-group').find('.qty-input')[0];
-  // var productRow = $(quantityInput).parent().parent().parent();
+  // var productRow = $(quantityInput).closest('.input-group').find('.qty-input')[0];
+  var productRow = $(quantityInput).parent().parent().parent();
   var price = parseFloat(productRow.children('.price').text());
   var quantity = $(quantityInput).val();
   var linePrice = price * quantity;
@@ -134,6 +158,7 @@ function updateSumItems() {
   });
   $('.total-items').text(sumItems);
 }
+
 
 // REMOVE PRODUCT FROM CART
 function removeItem(removeButton) {
@@ -174,3 +199,4 @@ $('.update-link').click(function(e) {
   form.submit();
 })
 
+console.log('im here cart.js')

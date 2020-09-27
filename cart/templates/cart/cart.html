@@ -46,7 +46,7 @@
         <div class="price"> {{ order_item.product.price }} </div>
 
         <div class="quantity">
-          <form class="form update-form" action="{% url 'update_cart' order_item.product_id %}" methods="POST">
+          <form class="form update-form" action="" methods="POST">
             {% csrf_token %}
               <div class="form-group">
                 <div class="input-group">
@@ -64,7 +64,7 @@
                            id="id_qty_{{ order_item.product_id }}">
 
                   <div class="input-group-append">
-                    <a href="{% url 'update_cart' order_item.product_id %}" class="increment_qty"
+                    <a href="" class="increment_qty"
                         data-product_id="{{ order_item.product_id }}"
                         id="increment-qty_{{ order_item.product_id }}">
                       <span> + </span>
@@ -76,7 +76,7 @@
           </form>
         </div>
 
-        <div class="subtotal">{{ total }}</div>
+        <div class="subtotal">{{ order_item.total }}</div>
 
         <a class="update-link text-info">Update</a>
 
@@ -126,7 +126,7 @@
 {% endblock %}
 
 {% block postloadjs %}
-    {{ block.super }}
-   <script type="text/javascript" src="{% static 'cart/js/cart.js' %}"></script>
-
+{{ block.super }}
+    <!--<script type="text/javascript" src="{% static 'cart/js/cart.js' %}"></script>-->
+  {% include 'cart/includes/qty_input.html' %}
 {% endblock %}
