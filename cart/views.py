@@ -14,7 +14,7 @@ def view_cart(request):
 
 def add_to_cart(request, product_id):
     """ ADD A PRODUCT AND QTY TO THE CART """
-    quantity = int(request.POST.get('quantity'))
+    quantity = request.POST.get('quantity')
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
 
@@ -62,4 +62,4 @@ def remove_from_cart(request, product_id):
     cart = request.session.GET('cart', {})
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
-    return redirect(reverse('view_cart'))
+    return HttpResponse(status=200)

@@ -17,11 +17,11 @@
     }
 
     // CHECK ENABLE DISABLE EVERY TIME INPUT CHANGES
-    $('.qty_input').change(function) {
+    $('.qty_input').change(function() {
         var productId = $(this).data('product_id');
         handleEnableDisable(productId)
-    }
-    
+    });
+
     // INCREMENT QTY
     $('.increment_qty').click(function(e) {
         e.preventDefault();
@@ -30,9 +30,9 @@
         $(closestInput).val(currentValue + 1);
         var productId = $(this).data('product_id');
         handleEnableDisable(productId);
-    })
+    });
 
-        // DECREMENT QTY
+    // DECREMENT QTY
     $('.decrement_qty').click(function(e) {
         e.preventDefault();
         var closestInput = $(this).closest('.input-group').find('qty_input')[0];
@@ -40,6 +40,25 @@
         $(closestInput).val(currentValue - 1);
         var productId = $(this).data('product_id');
         handleEnableDisable(productId);
+    });
+
+    // UPDATE FORM
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    });
+
+    // REMOVE
+    $('.remove-link').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var productId = $(this).attr('id').split('remove_')[1];
+        var url = `/cart/remove/${productId}/`;
+        var data = {'Csrfmiddlewaretoken': csrfToken };
+
+        $.post(url, data)
+         .done(function() {
+            location.reload();
+    });
     })
 
     console.log('im here')

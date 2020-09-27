@@ -46,7 +46,7 @@
         <div class="price"> {{ order_item.product.price }} </div>
 
         <div class="quantity">
-          <form class="form update-form" action="" methods="POST">
+          <form class="form update-form" action="{% url 'update_cart' order_item.product_id %}" methods="POST">
             {% csrf_token %}
               <div class="form-group">
                 <div class="input-group">
@@ -76,7 +76,7 @@
           </form>
         </div>
 
-        <div class="subtotal">{{ order_item.total }}</div>
+        <div class="subtotal">{{ order_item.product.price }}</div>
 
         <a class="update-link text-info">Update</a>
 

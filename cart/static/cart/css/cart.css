@@ -196,8 +196,8 @@ li.subtotal:before {
 }
 
 .update-link {
-  display: none;
-  position: fixed;
+  /*display: block;*/
+ /* position: fixed;*/
   left: 1.5rem;
   float: left;
   text-align: center;
@@ -374,11 +374,11 @@ aside {
   text-align: right;
   width: 30%;
 }
-
+/*
 .summary-delivery {
   padding-bottom: 3rem;
 }
-
+*/
 .subtotal-value,
 .total-value {
   text-align: right;
@@ -469,7 +469,7 @@ aside {
     padding: 0 1rem 0 0;
   }
   .summary {
-    width: 28%;
+    max-width: 28%;
   }
 }
 
