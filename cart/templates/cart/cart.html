@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cart_tools %}
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'cart/css/cart.css' %}">
@@ -76,7 +77,7 @@
           </form>
         </div>
 
-        <div class="subtotal">{{ order_item.product.price }}</div>
+        <div class="subtotal">{{ order_item.product.price | calc_subtotal:order_item.quantity  }}</div>
 
         <a class="update-link text-info">Update</a>
 
@@ -127,6 +128,6 @@
 
 {% block postloadjs %}
 {{ block.super }}
-    <!--<script type="text/javascript" src="{% static 'cart/js/cart.js' %}"></script>-->
+    <!--<script type="text/javascript" src="{% static 'cart/js/cart.js' %}"></script> -->
   {% include 'cart/includes/qty_input.html' %}
 {% endblock %}

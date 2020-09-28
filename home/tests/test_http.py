@@ -1,4 +1,6 @@
-from django.test import TestCase, Client
+from django.test import (
+    SimpleTestCase, TestCase, Client
+)
 from django.urls import reverse
 
 
@@ -24,3 +26,13 @@ class Home_PageTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, '/')
         self.assertTemplateUsed(response, 'home/index.html')
+
+    def test_homepage_contains_correct_html(self):
+        response = self.client.get('/')
+        self.assertContains(response, '')
+    
+    def test_homepage_doesnt_contain_incorrect_html(self):
+        response = self.client.get('/')
+        self.assertNotContains(
+            response, 'Hi there! I should not be here :)'
+        )

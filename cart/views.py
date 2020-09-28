@@ -14,7 +14,7 @@ def view_cart(request):
 
 def add_to_cart(request, product_id):
     """ ADD A PRODUCT AND QTY TO THE CART """
-    quantity = request.POST.get('quantity')
+    quantity = int(request.POST.get('quantity')) # this needs attn
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
 
@@ -43,9 +43,9 @@ def update_cart(request, product_id):
     return redirect(reverse('view_cart'))
 
 
-"""
+
 def remove_from_cart(request, product_id):
-    VIEW TO REMOVE A PRODUCT FROM CART
+    # VIEW TO REMOVE A PRODUCT FROM CART
     try:
         cart = request.session.get('cart', {})
 
@@ -55,11 +55,12 @@ def remove_from_cart(request, product_id):
         return HttpResponse(status=200)
     except Exception as e:
         return HttpResponse(status=500)
+
+
 """
-
-
 def remove_from_cart(request, product_id):
     cart = request.session.GET('cart', {})
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
     return HttpResponse(status=200)
+"""
