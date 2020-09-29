@@ -49,21 +49,31 @@
   {% include 'includes/footer.html' %}
 
   	<!-- INFO MESSAGES TO NOTIFY USER -->
-	  <div class="container messages">
     {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-          {{ message }}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="container-messages">
+            {% for message in messages %}
+                {% with message.level as level %}
+                    {% if level == 40 %}
+                        {% include 'includes/toasts/error.html' %}
+                    {% elif level == 30 %}
+                        {% include 'includes/toasts/warning.html' %}
+                    {% elif level == 25 %}
+                        {% include 'includes/toasts/success.html' %}
+                    {% else %}
+                        {% include 'includes/toasts/info.html' %}
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
         </div>
-        {% endfor %}
     {% endif %}
-    </div>
 
-    {% block postloadjs %}
-    {% endblock %}
+  {% block postloadjs %}
+    <script type="text/javascript">
+
+      $('.toast').toast('show');
+    
+    </script>
+  {% endblock %}
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS 
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

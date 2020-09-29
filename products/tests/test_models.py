@@ -3,7 +3,7 @@ from products.models import Product, Category
 from django.urls import reverse
 
 
-class ProductModelsTest(TestCase):
+class ProductModelTest(TestCase):
 
     def test_verbose_name_plural(self):
         self.assertEqual(str(Product._meta.verbose_name_plural), 'products')
@@ -13,7 +13,7 @@ class ProductModelsTest(TestCase):
         self.assertEqual(str(product), product.name)
 
     def test_product_details_view(self):
-        response = self.client.get(self.product_details.get_absolute_url())
+        response = self.client.get(self.products.get_absolute_url())
         no_response = self.client.get('/books/12345/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(no_response.status_code, 404)
@@ -21,10 +21,11 @@ class ProductModelsTest(TestCase):
         self.assertTemplateUsed(response, 'product_details.html')
 
     def test_get_absolute_url(self):
-        return reverse('products/product_details', kwargs={'slug': self.slug})
+        product = Product.objects.get(id=1)
+        self.assertEquals(product.get_absolute_url(), '/products/pinebook-pro/1')
 
 
-class CategoryModelsTest(TestCase):
+class CategoryModelTest(TestCase):
 
     def test_verbose_name_plural(self):
         self.assertEqual(str(Category._meta.verbose_name_plural), 'categories')

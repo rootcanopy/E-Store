@@ -11,15 +11,30 @@ body {
     padding: 0.58rem;
 }
 
+.fa-user,
+.fa-shopping-cart {
+    text-align: right;
+    display: flex;
+}
+
 /*-- LANDING PAGE --*/
 img.hero {
     width: 100%;
 }
 
-/*-- MESSAGES --*/
+/*-- TOAST MESSAGES --*/
 
-.messages {
-    margin-top: 2em;
+.container-messages {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999;
+}
+.special-toast {
+    overflow: visible;
+}
+.capper-toast {
+    height: 2px;
 }
 
 
@@ -147,68 +162,4 @@ footer li {
 .footer-icon {
     font-size: 2em;
     margin: 5px
-}
-
-
-/*-- SHOPPING CART --*/
-/*
-.img-thumbnail 
-    width: 50;
-    height: 50
-}*/
-
-.table>tbody>tr>td,
-.table>tfoot>tr>td {
-    vertical-align: middle;
-}
-
-@media screen and (max-width: 600px) {
-    table#cart tbody td .form-control {
-        width: 20%;
-        display: inline !important;
-    }
-
-    .actions .btn {
-        width: 36%;
-        margin: 1.5em 0;
-    }
-
-    .actions .btn-info {
-        float: left;
-    }
-
-    .actions .btn-danger {
-        float: right;
-    }
-
-    table#cart thead {
-        display: none;
-    }
-
-    table#cart tbody td {
-        display: block;
-        padding: .6rem;
-        min-width: 320px;
-    }
-
-    table#cart tbody tr td:first-child {
-        background: #333;
-        color: #fff;
-    }
-
-    table#cart tbody td:before {
-        content: attr(data-th);
-        font-weight: bold;
-        display: inline-block;
-        width: 8rem;
-    }
-
-    table#cart tfoot td {
-        display: block;
-    }
-
-    table#cart tfoot td .btn {
-        display: block;
-    }
-
 }

@@ -20,7 +20,7 @@ def add_to_cart(request, product_id):
 
     if product_id in list(cart.keys()):
         cart[product_id] += quantity
-        messages.info(request, 'Product quantity updated')
+        messages.success(request, 'Product quantity updated')
     else:
         cart[product_id] = quantity
         messages.info(request, "Product added to your cart.")
@@ -47,9 +47,11 @@ def update_cart(request, product_id):
 def remove_from_cart(request, product_id):
     # VIEW TO REMOVE A PRODUCT FROM CART
     try:
+        product = get_object_or_404(Product, pk=product_id)
         cart = request.session.get('cart', {})
 
         cart.pop(product_id)
+        messages.success(request, f'Removed {product.name} from your bag')
 
         request.session['cart'] = cart
         return HttpResponse(status=200)
