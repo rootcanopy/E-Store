@@ -1,7 +1,7 @@
 from django.conf import settings
 from decimal import Decimal
 from django.shortcuts import get_object_or_404
-from .models import OrderItem
+from checkout.models import OrderItem
 from products.models import Product
 from django import template
 

@@ -54,6 +54,7 @@ class Order(models.Model):
 
 # MODEL FOR THE OBJECT ITEM
 class OrderItem(models.Model):
+    order = models.ForeignKey(Order, default=True, on_delete=models.CASCADE, related_name='orderitems')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     orderitem_total = models.DecimalField(max_digits=6, null=False, default=True, decimal_places=2)
