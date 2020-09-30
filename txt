@@ -19,22 +19,20 @@
         </div>
 
         <div class="subtotal">104.00</div>
-        
+
         <div class="remove">
           <button>Remove</button>
         </div>
       </div>
-    
-            <input data-product_id="{{ order_item.product_id }}" 
-              id="id_qty_{{ order_item.product_id }}"
-              type="number" id="adjust_cart_qty_{{ order_item.product_id }}"
-              value="{{ order_item.quantity }}" min="1" max="90"
-              class="quantity-field qty_input">
+
+      <input data-product_id="{{ order_item.product_id }}" id="id_qty_{{ order_item.product_id }}" type="number"
+        id="adjust_cart_qty_{{ order_item.product_id }}" value="{{ order_item.quantity }}" min="1" max="90"
+        class="quantity-field qty_input">
 
 
-	{% if messages %}  
-    <div class="container-messages">
-      {% for message in messages %}
+      {% if messages %}
+      <div class="container-messages">
+        {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
           {{ message }}
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -42,25 +40,1371 @@
           </button>
         </div>
         {% endfor %}
-    </div>
-  {% endif %}
+      </div>
+      {% endif %}
 
-from django.db import models
-from products.models import Product
-from checkout.models import Order
+      from django.db import models
+      from products.models import Product
+      from checkout.models import Order
 
 
-# MODEL FOR THE OBJECT ITEM
-class OrderItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=false, blank=false, default=0)
-    orderitem_total = models.DecimalField(max_digits=6, null=False, default=True, decimal_places=2)
+      # MODEL FOR THE OBJECT ITEM
+      class OrderItem(models.Model):
+      product = models.ForeignKey(Product, on_delete=models.CASCADE)
+      quantity = models.IntegerField(null=false, blank=false, default=0)
+      orderitem_total = models.DecimalField(max_digits=6, null=False, default=True, decimal_places=2)
 
-    def save(self, *args, **kwargs):
-        # OVERRIDE ORIGINAL SAVE METHOD && SET THE ORDERITEM TOTAL
-        # && UPDATE THE ORDER TOTAL
-        self.orderitem_total = self.product.price * self.quantity
-        super().save(*args, **kwargs)
+      def save(self, *args, **kwargs):
+      # OVERRIDE ORIGINAL SAVE METHOD && SET THE ORDERITEM TOTAL
+      # && UPDATE THE ORDER TOTAL
+      self.orderitem_total = self.product.price * self.quantity
+      super().save(*args, **kwargs)
 
-    def __str__(self):
-        return f'ID {self.product.id} on order {self.order.order_id}'
+      def __str__(self):
+      return f'ID {self.product.id} on order {self.order.order_id}'
+
+
+
+      <form>
+        <div id="example5-paymentRequest">
+          <!--Stripe paymentRequestButton Element inserted here-->
+        </div>
+        <fieldset>
+          <legend class="card-only" data-tid="elements_examples.form.pay_with_card">Pay with card</legend>
+          <legend class="payment-request-available" data-tid="elements_examples.form.enter_card_manually">Or enter card
+            details</legend>
+          <div class="row">
+            <div class="field">
+              <label for="example5-name" data-tid="elements_examples.form.name_label">Name</label>
+              <input id="example5-name" data-tid="elements_examples.form.name_placeholder" class="input" type="text"
+                placeholder="Jane Doe" required="" autocomplete="name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="example5-email" data-tid="elements_examples.form.email_label">Email</label>
+              <input id="example5-email" data-tid="elements_examples.form.email_placeholder" class="input" type="text"
+                placeholder="janedoe@gmail.com" required="" autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="example5-phone" data-tid="elements_examples.form.phone_label">Phone</label>
+              <input id="example5-phone" data-tid="elements_examples.form.phone_placeholder" class="input" type="text"
+                placeholder="(941) 555-0123" required="" autocomplete="tel">
+            </div>
+          </div>
+          <div data-locale-reversible="">
+            <div class="row">
+              <div class="field">
+                <label for="example5-address" data-tid="elements_examples.form.address_label">Address</label>
+                <input id="example5-address" data-tid="elements_examples.form.address_placeholder" class="input"
+                  type="text" placeholder="185 Berry St" required="" autocomplete="address-line1">
+              </div>
+            </div>
+            <div class="row" data-locale-reversible="">
+              <div class="field">
+                <label for="example5-city" data-tid="elements_examples.form.city_label">City</label>
+                <input id="example5-city" data-tid="elements_examples.form.city_placeholder" class="input" type="text"
+                  placeholder="San Francisco" required="" autocomplete="address-level2">
+              </div>
+              <div class="field">
+                <label for="example5-state" data-tid="elements_examples.form.state_label">State</label>
+                <input id="example5-state" data-tid="elements_examples.form.state_placeholder" class="input empty"
+                  type="text" placeholder="CA" required="" autocomplete="address-level1">
+              </div>
+              <div class="field">
+                <label for="example5-zip" data-tid="elements_examples.form.postal_code_label">ZIP</label>
+                <input id="example5-zip" data-tid="elements_examples.form.postal_code_placeholder" class="input empty"
+                  type="text" placeholder="94107" required="" autocomplete="postal-code">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="example5-card" data-tid="elements_examples.form.card_label">Card</label>
+              <div id="example5-card" class="input StripeElement StripeElement--empty">
+                <div class="__PrivateStripeElement"
+                  style="margin: 0px !important; padding: 0px !important; border: medium none !important; display: block !important; background: transparent none repeat scroll 0% 0% !important; position: relative !important; opacity: 1 !important;">
+                  <iframe allowtransparency="true" scrolling="no" name="__privateStripeFrame13122"
+                    allowpaymentrequest="true"
+                    src="https://js.stripe.com/v3/elements-inner-card-0adecce3391801b2ecad36f21d6b5a34.html#style[base][iconColor]=%23fff&amp;style[base][color]=%23fff&amp;style[base][fontWeight]=400&amp;style[base][fontFamily]=Helvetica+Neue%2C+Helvetica%2C+Arial%2C+sans-serif&amp;style[base][fontSize]=16px&amp;style[base][fontSmoothing]=antialiased&amp;style[base][::placeholder][color]=%23BFAEF6&amp;style[base][:-webkit-autofill][color]=%23fce883&amp;style[invalid][iconColor]=%23FFC7EE&amp;style[invalid][color]=%23FFC7EE&amp;iconStyle=solid&amp;locale=en&amp;componentName=card&amp;wait=false&amp;rtl=false&amp;keyMode=test&amp;apiKey=pk_test_6pRNASCoBOKtIshFeQd4XMUh&amp;origin=https%3A%2F%2Fstripe.dev&amp;referrer=https%3A%2F%2Fstripe.dev%2Felements-examples%2F&amp;controllerId=__privateStripeController1311"
+                    title="Secure card payment input frame"
+                    style="border: medium none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translateZ(0px) !important; height: 19.2px;"
+                    frameborder="0"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true"
+                    aria-label=" " autocomplete="false" maxlength="1"
+                    style="border: medium none !important; display: block !important; position: absolute !important; height: 1px !important; top: 0px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent none repeat scroll 0% 0% !important; pointer-events: none !important; font-size: 16px !important;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" data-tid="elements_examples.form.pay_button">Pay $25</button>
+        </fieldset>
+        <div class="error" role="alert"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+            viewBox="0 0 17 17">
+            <path class="base" fill="#000"
+              d="M8.5,17 C3.80557963,17 0,13.1944204 0,8.5 C0,3.80557963 3.80557963,0 8.5,0 C13.1944204,0 17,3.80557963 17,8.5 C17,13.1944204 13.1944204,17 8.5,17 Z">
+            </path>
+            <path class="glyph" fill="#FFF"
+              d="M8.5,7.29791847 L6.12604076,4.92395924 C5.79409512,4.59201359 5.25590488,4.59201359 4.92395924,4.92395924 C4.59201359,5.25590488 4.59201359,5.79409512 4.92395924,6.12604076 L7.29791847,8.5 L4.92395924,10.8739592 C4.59201359,11.2059049 4.59201359,11.7440951 4.92395924,12.0760408 C5.25590488,12.4079864 5.79409512,12.4079864 6.12604076,12.0760408 L8.5,9.70208153 L10.8739592,12.0760408 C11.2059049,12.4079864 11.7440951,12.4079864 12.0760408,12.0760408 C12.4079864,11.7440951 12.4079864,11.2059049 12.0760408,10.8739592 L9.70208153,8.5 L12.0760408,6.12604076 C12.4079864,5.79409512 12.4079864,5.25590488 12.0760408,4.92395924 C11.7440951,4.59201359 11.2059049,4.59201359 10.8739592,4.92395924 L8.5,7.29791847 L8.5,7.29791847 Z">
+            </path>
+          </svg>
+          <span class="message"></span></div>
+      </form>
+      <div class="success">
+        <div class="icon">
+          <svg width="84px" height="84px" viewBox="0 0 84 84" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xlink="http://www.w3.org/1999/xlink">
+            <circle class="border" cx="42" cy="42" r="40" stroke-linecap="round" stroke-width="4" stroke="#000"
+              fill="none"></circle>
+            <path class="checkmark" stroke-linecap="round" stroke-linejoin="round"
+              d="M23.375 42.5488281 36.8840688 56.0578969 64.891932 28.0500338" stroke-width="4" stroke="#000"
+              fill="none"></path>
+          </svg>
+        </div>
+        <h3 class="title" data-tid="elements_examples.success.title">Payment successful</h3>
+        <p class="message"><span data-tid="elements_examples.success.message">Thanks for trying Stripe Elements. No
+            money was charged, but we generated a token:</span><span class="token">tok_189gMN2eZvKYlo2CwTBv9KKh</span>
+        </p>
+        <a class="reset" href="#">
+          <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xlink="http://www.w3.org/1999/xlink">
+            <path fill="#000000"
+              d="M15,7.05492878 C10.5000495,7.55237307 7,11.3674463 7,16 C7,20.9705627 11.0294373,25 16,25 C20.9705627,25 25,20.9705627 25,16 C25,15.3627484 24.4834055,14.8461538 23.8461538,14.8461538 C23.2089022,14.8461538 22.6923077,15.3627484 22.6923077,16 C22.6923077,19.6960595 19.6960595,22.6923077 16,22.6923077 C12.3039405,22.6923077 9.30769231,19.6960595 9.30769231,16 C9.30769231,12.3039405 12.3039405,9.30769231 16,9.30769231 L16,12.0841673 C16,12.1800431 16.0275652,12.2738974 16.0794108,12.354546 C16.2287368,12.5868311 16.5380938,12.6540826 16.7703788,12.5047565 L22.3457501,8.92058924 L22.3457501,8.92058924 C22.4060014,8.88185624 22.4572275,8.83063012 22.4959605,8.7703788 C22.6452866,8.53809377 22.5780351,8.22873685 22.3457501,8.07941076 L22.3457501,8.07941076 L16.7703788,4.49524351 C16.6897301,4.44339794 16.5958758,4.41583275 16.5,4.41583275 C16.2238576,4.41583275 16,4.63969037 16,4.91583275 L16,7 L15,7 L15,7.05492878 Z M16,32 C7.163444,32 0,24.836556 0,16 C0,7.163444 7.163444,0 16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 Z">
+            </path>
+          </svg>
+        </a>
+      </div>
+
+      <div class="caption">
+        <span data-tid="elements_examples.caption.no_charge" class="no-charge">Your card won't be charged</span>
+        <a class="source" href="https://github.com/stripe/elements-examples/#example-5">
+          <svg width="16px" height="10px" viewBox="0 0 16 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xlink="http://www.w3.org/1999/xlink">
+            <path
+              d="M1,8 L12,8 C12.5522847,8 13,8.44771525 13,9 C13,9.55228475 12.5522847,10 12,10 L1,10 C0.44771525,10 6.76353751e-17,9.55228475 0,9 C-6.76353751e-17,8.44771525 0.44771525,8 1,8 L1,8 Z M1,4 L8,4 C8.55228475,4 9,4.44771525 9,5 C9,5.55228475 8.55228475,6 8,6 L1,6 C0.44771525,6 6.76353751e-17,5.55228475 0,5 C-6.76353751e-17,4.44771525 0.44771525,4 1,4 L1,4 Z M1,0 L15,0 C15.5522847,-1.01453063e-16 16,0.44771525 16,1 L16,1 C16,1.55228475 15.5522847,2 15,2 L1,2 C0.44771525,2 6.76353751e-17,1.55228475 0,1 L0,1 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 L1,0 Z"
+              fill="#AAB7C4"></path>
+          </svg>
+          <span data-tid="elements_examples.caption.view_source">View source on GitHub</span>
+        </a>
+      </div>
+
+
+      {% block corejs %}
+      <!-- jQuery first, then Popper.js, then Bootstrap JS 
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      <!-- MDB core JavaScript 
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>-->
+      {% endblock %}
+
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="navbar-brand" href="/"><i class="fas fa-store text-primary fa-2x"></i></a>
+
+        <!-- DROP FOR USER -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light px-3 mr-3" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user fa-2x text-blue"></i>
+            <span class="caret"></span>
+          </a>
+
+          <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+            {% if user.is_authenticated %}
+            <a class="dropdown-item" href="">Profile</a>
+            <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+            {% else %}
+            <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
+            <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
+            {% endif %}
+          </div>
+        </li>
+
+        <!-- SHOPPING CART ICON -->
+        <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'view_cart' %}">
+          <i class="fas fa-shopping-cart fa-2x"></i>
+          <span class="badge red z-depth-1 mr-1">{{ product_count }}</span>
+        </a>
+
+        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+
+          <div class="navbar-nav">
+            <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="/">Home <span
+                class="sr-only">(current)</span></a>
+
+            <a class="nav-item dropdown"><a
+                class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" href="#"
+                data-toggle="dropdown">Categories</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'home' %}">All Products</a>
+                {% for category in links %}
+                <a class="dropdown-item" href="{% url 'home' %}?category={{ category.name }}">{{ category.name }}</a>
+                {% endfor %}
+              </div>
+
+              <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3" href="#">About</a>
+              <a class="nav-item nav-link text-light text-uppercase font-weight-bold px-3"
+                href="{% url 'contact' %}">Contact</a>
+
+              <!-- SEARCH INPUT -->
+              <form class="form-inline ml-3" method="GET" action="">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="query" placeholder="Search">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-primary" id="btn-search" name="button">
+                      <i class="fas fa-search fa-1.5x"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+          </div>
+      </nav>
+
+      <!--====== Nav 2 ======-->
+      <nav class="secondary-nav-wrapper">
+        <div class="container">
+
+          <!--====== Secondary Nav ======-->
+          <div class="secondary-nav">
+
+            <!--====== Dropdown Main plugin ======-->
+            <div class="menu-init" id="navigation1">
+
+              <button class="btn btn--icon toggle-mega-text toggle-button" type="button">Menu</button>
+
+              <!--====== Menu ======-->
+              <div class="ah-lg-mode">
+
+                <span class="ah-close">✕ Close</span>
+
+                <!--====== List ======-->
+                <ul class="ah-list">
+                  <li class="has-dropdown">
+
+                    <span class="mega-text">M</span>
+
+                    <!--====== Mega Menu ======-->
+
+                    <span class="js-menu-toggle"></span>
+                    <div class="mega-menu">
+                      <div class="mega-menu-wrap">
+                        <div class="mega-menu-list">
+                          <ul>
+                            <li class="js-active">
+
+                              <a href="shop-side-version-2.html"><i class="fas fa-tv u-s-m-r-6"></i>
+
+                                <span>Electronics</span></a>
+
+                              <span class="js-menu-toggle js-toggle-mark"></span></li>
+                            <li>
+
+                              <a href="shop-side-version-2.html"><i class="fas fa-female u-s-m-r-6"></i>
+
+                                <span>Women's Clothing</span></a>
+
+                              <span class="js-menu-toggle"></span></li>
+                            <li>
+
+                              <a href="shop-side-version-2.html"><i class="fas fa-male u-s-m-r-6"></i>
+
+                                <span>Men's Clothing</span></a>
+
+                              <span class="js-menu-toggle"></span></li>
+                            <li>
+
+                              <a href="index-2.html"><i class="fas fa-utensils u-s-m-r-6"></i>
+
+                                <span>Food & Supplies</span></a>
+
+                              <span class="js-menu-toggle"></span></li>
+                            <li>
+
+                              <a href="index-2.html"><i class="fas fa-couch u-s-m-r-6"></i>
+
+                                <span>Furniture & Decor</span></a>
+
+                              <span class="js-menu-toggle"></span></li>
+                            <li>
+
+                              <a href="index-2.html"><i class="fas fa-football-ball u-s-m-r-6"></i>
+
+                                <span>Sports & Game</span></a>
+
+                              <span class="js-menu-toggle"></span></li>
+                            <li>
+
+                              <a href="index-2.html"><i class="fas fa-heartbeat u-s-m-r-6"></i>
+
+                                <span>Beauty & Health</span></a>
+
+                              <span class="js-menu-toggle"></span></li>
+                          </ul>
+                        </div>
+
+                        <!--====== Electronics ======-->
+                        <div class="mega-menu-content js-active">
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">3D PRINTER & SUPPLIES</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">3d Printer</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">3d Printing Pen</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">3d Printing Accessories</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">3d Printer Module Board</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">HOME AUDIO & VIDEO</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">TV Boxes</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">TC Receiver & Accessories</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Display Dongle</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Home Theater System</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">MEDIA PLAYERS</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Earphones</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Mp3 Players</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Speakers & Radios</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Microphones</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">VIDEO GAME ACCESSORIES</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Nintendo Video Games Accessories</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Sony Video Games Accessories</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Xbox Video Games Accessories</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                          <br>
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">SECURITY & PROTECTION</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Security Cameras</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Alarm System</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Security Gadgets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">CCTV Security & Accessories</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">PHOTOGRAPHY & CAMERA</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Digital Cameras</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Sport Camera & Accessories</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Camera Accessories</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Lenses & Accessories</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">ARDUINO COMPATIBLE</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Raspberry Pi & Orange Pi</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Module Board</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Smart Robot</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Board Kits</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">DSLR Camera</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Nikon Cameras</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Canon Camera</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Sony Camera</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">DSLR Lenses</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                          <br>
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">NECESSARY ACCESSORIES</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Flash Cards</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Memory Cards</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Flash Pins</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Compact Discs</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-9 mega-image">
+                              <div class="mega-banner">
+
+                                <a class="u-d-block" href="shop-side-version-2.html">
+
+                                  <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-0.jpg" alt=""></a>
+                              </div>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                        </div>
+                        <!--====== End - Electronics ======-->
+
+
+                        <!--====== Women ======-->
+                        <div class="mega-menu-content">
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-6 mega-image">
+                              <div class="mega-banner">
+
+                                <a class="u-d-block" href="shop-side-version-2.html">
+
+                                  <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-1.jpg" alt=""></a>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 mega-image">
+                              <div class="mega-banner">
+
+                                <a class="u-d-block" href="shop-side-version-2.html">
+
+                                  <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-2.jpg" alt=""></a>
+                              </div>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                          <br>
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">HOT CATEGORIES</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Dresses</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Blouses & Shirts</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">T-shirts</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Rompers</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">INTIMATES</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Bras</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Brief Sets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Bustiers & Corsets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Panties</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">WEDDING & EVENTS</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Wedding Dresses</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Evening Dresses</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Prom Dresses</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Flower Dresses</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">BOTTOMS</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Skirts</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Shorts</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Leggings</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Jeans</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                          <br>
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">OUTWEAR</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Blazers</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Basics Jackets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Trench</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Leather & Suede</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">JACKETS</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Denim Jackets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Trucker Jackets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Windbreaker Jackets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Leather Jackets</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">ACCESSORIES</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Tech Accessories</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Headwear</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Baseball Caps</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Belts</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">OTHER ACCESSORIES</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Bags</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Wallets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Watches</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Sunglasses</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                          <br>
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-9 mega-image">
+                              <div class="mega-banner">
+
+                                <a class="u-d-block" href="shop-side-version-2.html">
+
+                                  <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-3.jpg" alt=""></a>
+                              </div>
+                            </div>
+                            <div class="col-lg-3 mega-image">
+                              <div class="mega-banner">
+
+                                <a class="u-d-block" href="shop-side-version-2.html">
+
+                                  <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-4.jpg" alt=""></a>
+                              </div>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                        </div>
+                        <!--====== End - Women ======-->
+
+
+                        <!--====== Men ======-->
+                        <div class="mega-menu-content">
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-4 mega-image">
+                              <div class="mega-banner">
+
+                                <a class="u-d-block" href="shop-side-version-2.html">
+
+                                  <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-5.jpg" alt=""></a>
+                              </div>
+                            </div>
+                            <div class="col-lg-4 mega-image">
+                              <div class="mega-banner">
+
+                                <a class="u-d-block" href="shop-side-version-2.html">
+
+                                  <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-6.jpg" alt=""></a>
+                              </div>
+                            </div>
+                            <div class="col-lg-4 mega-image">
+                              <div class="mega-banner">
+
+                                <a class="u-d-block" href="shop-side-version-2.html">
+
+                                  <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-7.jpg" alt=""></a>
+                              </div>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                          <br>
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">HOT SALE</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">T-Shirts</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Tank Tops</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Polo</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Shirts</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">OUTWEAR</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Hoodies</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Trench</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Parkas</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Sweaters</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">BOTTOMS</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Casual Pants</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Cargo Pants</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Jeans</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Shorts</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">UNDERWEAR</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Boxers</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Briefs</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Robes</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Socks</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                          <br>
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">JACKETS</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Denim Jackets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Trucker Jackets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Windbreaker Jackets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Leather Jackets</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">SUNGLASSES</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Pilot</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Wayfarer</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Square</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Round</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">ACCESSORIES</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Eyewear Frames</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Scarves</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Hats</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Belts</a></li>
+                              </ul>
+                            </div>
+                            <div class="col-lg-3">
+                              <ul>
+                                <li class="mega-list-title">
+
+                                  <a href="shop-side-version-2.html">OTHER ACCESSORIES</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Bags</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Wallets</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Watches</a></li>
+                                <li>
+
+                                  <a href="shop-side-version-2.html">Tech Accessories</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                          <br>
+
+                          <!--====== Mega Menu Row ======-->
+                          <div class="row">
+                            <div class="col-lg-6 mega-image">
+                              <div class="mega-banner">
+
+                                <a class="u-d-block" href="shop-side-version-2.html">
+
+                                  <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-8.jpg" alt=""></a>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 mega-image">
+                              <div class="mega-banner">
+
+                                <a class="u-d-block" href="shop-side-version-2.html">
+
+                                  <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-9.jpg" alt=""></a>
+                              </div>
+                            </div>
+                          </div>
+                          <!--====== End - Mega Menu Row ======-->
+                        </div>
+                        <!--====== End - Men ======-->
+
+
+                        <!--====== No Sub Categories ======-->
+                        <div class="mega-menu-content">
+                          <h5>No Categories</h5>
+                        </div>
+                        <!--====== End - No Sub Categories ======-->
+
+
+                        <!--====== No Sub Categories ======-->
+                        <div class="mega-menu-content">
+                          <h5>No Categories</h5>
+                        </div>
+                        <!--====== End - No Sub Categories ======-->
+
+
+                        <!--====== No Sub Categories ======-->
+                        <div class="mega-menu-content">
+                          <h5>No Categories</h5>
+                        </div>
+                        <!--====== End - No Sub Categories ======-->
+
+
+                        <!--====== No Sub Categories ======-->
+                        <div class="mega-menu-content">
+                          <h5>No Categories</h5>
+                        </div>
+                        <!--====== End - No Sub Categories ======-->
+                      </div>
+                    </div>
+                    <!--====== End - Mega Menu ======-->
+                  </li>
+                </ul>
+                <!--====== End - List ======-->
+              </div>
+              <!--====== End - Menu ======-->
+            </div>
+            <!--====== End - Dropdown Main plugin ======-->
+
+
+            <!--====== Dropdown Main plugin ======-->
+            <div class="menu-init" id="navigation2">
+
+              <button class="btn btn--icon toggle-button toggle-button--white fas fa-cog" type="button"></button>
+
+              <!--====== Menu ======-->
+              <div class="ah-lg-mode">
+
+                <span class="ah-close">✕ Close</span>
+
+                <!--====== List ======-->
+                <ul class="ah-list ah-list--design2 ah-list--link-color-white">
+                  <li>
+
+                    <a href="shop-side-version-2.html">NEW ARRIVALS</a></li>
+                  <li class="has-dropdown">
+
+                    <a>PAGES<i class="fas fa-angle-down u-s-m-l-6"></i></a>
+
+                    <!--====== Dropdown ======-->
+
+                    <span class="js-menu-toggle"></span>
+                    <ul style="width:170px">
+                      <li class="has-dropdown has-dropdown--ul-left-100">
+
+                        <a>Home<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
+
+                        <!--====== Dropdown ======-->
+
+                        <span class="js-menu-toggle"></span>
+                        <ul style="width:118px">
+                          <li>
+
+                            <a href="index.html">Home 1</a></li>
+                          <li>
+
+                            <a href="index-2.html">Home 2</a></li>
+                          <li>
+
+                            <a href="index-3.html">Home 3</a></li>
+                        </ul>
+                        <!--====== End - Dropdown ======-->
+                      </li>
+                      <li class="has-dropdown has-dropdown--ul-left-100">
+
+                        <a>Account<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
+
+                        <!--====== Dropdown ======-->
+
+                        <span class="js-menu-toggle"></span>
+                        <ul style="width:200px">
+                          <li>
+
+                            <a href="signin.html">Signin / Already Registered</a></li>
+                          <li>
+
+                            <a href="signup.html">Signup / Register</a></li>
+                          <li>
+
+                            <a href="lost-password.html">Lost Password</a></li>
+                        </ul>
+                        <!--====== End - Dropdown ======-->
+                      </li>
+                      <li class="has-dropdown has-dropdown--ul-left-100">
+
+                        <a href="dashboard.html">Dashboard<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
+
+                        <!--====== Dropdown ======-->
+
+                        <span class="js-menu-toggle"></span>
+                        <ul style="width:200px">
+                          <li class="has-dropdown has-dropdown--ul-left-100">
+
+                            <a href="dashboard.html">Manage My Account<i
+                                class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
+
+                            <!--====== Dropdown ======-->
+
+                            <span class="js-menu-toggle"></span>
+                            <ul style="width:180px">
+                              <li>
+
+                                <a href="dash-edit-profile.html">Edit Profile</a></li>
+                              <li>
+
+                                <a href="dash-address-book.html">Edit Address Book</a></li>
+                              <li>
+
+                                <a href="dash-manage-order.html">Manage Order</a></li>
+                            </ul>
+                            <!--====== End - Dropdown ======-->
+                          </li>
+                          <li>
+
+                            <a href="dash-my-profile.html">My Profile</a></li>
+                          <li class="has-dropdown has-dropdown--ul-left-100">
+
+                            <a href="dash-address-book.html">Address Book<i
+                                class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
+
+                            <!--====== Dropdown ======-->
+
+                            <span class="js-menu-toggle"></span>
+                            <ul style="width:180px">
+                              <li>
+
+                                <a href="dash-address-make-default.html">Address Make Default</a></li>
+                              <li>
+
+                                <a href="dash-address-add.html">Add New Address</a></li>
+                              <li>
+
+                                <a href="dash-address-edit.html">Edit Address Book</a></li>
+                            </ul>
+                            <!--====== End - Dropdown ======-->
+                          </li>
+                          <li>
+
+                            <a href="dash-track-order.html">Track Order</a></li>
+                          <li>
+
+                            <a href="dash-my-order.html">My Orders</a></li>
+                          <li>
+
+                            <a href="dash-payment-option.html">My Payment Options</a></li>
+                          <li>
+
+                            <a href="dash-cancellation.html">My Returns & Cancellations</a></li>
+                        </ul>
+                        <!--====== End - Dropdown ======-->
+                      </li>
+                      <li class="has-dropdown has-dropdown--ul-left-100">
+
+                        <a>Empty<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
+
+                        <!--====== Dropdown ======-->
+
+                        <span class="js-menu-toggle"></span>
+                        <ul style="width:200px">
+                          <li>
+
+                            <a href="empty-search.html">Empty Search</a></li>
+                          <li>
+
+                            <a href="empty-cart.html">Empty Cart</a></li>
+                          <li>
+
+                            <a href="empty-wishlist.html">Empty Wishlist</a></li>
+                        </ul>
+                        <!--====== End - Dropdown ======-->
+                      </li>
+                      <li class="has-dropdown has-dropdown--ul-left-100">
+
+                        <a>Product Details<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
+
+                        <!--====== Dropdown ======-->
+
+                        <span class="js-menu-toggle"></span>
+                        <ul style="width:200px">
+                          <li>
+
+                            <a href="product-detail.html">Product Details</a></li>
+                          <li>
+
+                            <a href="product-detail-variable.html">Product Details Variable</a></li>
+                          <li>
+
+                            <a href="product-detail-affiliate.html">Product Details Affiliate</a></li>
+                        </ul>
+                        <!--====== End - Dropdown ======-->
+                      </li>
+                      <li class="has-dropdown has-dropdown--ul-left-100">
+
+                        <a>Shop Grid Layout<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
+
+                        <!--====== Dropdown ======-->
+
+                        <span class="js-menu-toggle"></span>
+                        <ul style="width:200px">
+                          <li>
+
+                            <a href="shop-grid-left.html">Shop Grid Left Sidebar</a></li>
+                          <li>
+
+                            <a href="shop-grid-right.html">Shop Grid Right Sidebar</a></li>
+                          <li>
+
+                            <a href="shop-grid-full.html">Shop Grid Full Width</a></li>
+                          <li>
+
+                            <a href="shop-side-version-2.html">Shop Side Version 2</a></li>
+                        </ul>
+                        <!--====== End - Dropdown ======-->
+                      </li>
+                      <li class="has-dropdown has-dropdown--ul-left-100">
+
+                        <a>Shop List Layout<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
+
+                        <!--====== Dropdown ======-->
+
+                        <span class="js-menu-toggle"></span>
+                        <ul style="width:200px">
+                          <li>
+
+                            <a href="shop-list-left.html">Shop List Left Sidebar</a></li>
+                          <li>
+
+                            <a href="shop-list-right.html">Shop List Right Sidebar</a></li>
+                          <li>
+
+                            <a href="shop-list-full.html">Shop List Full Width</a></li>
+                        </ul>
+                        <!--====== End - Dropdown ======-->
+                      </li>
+                      <li>
+
+                        <a href="cart.html">Cart</a></li>
+                      <li>
+
+                        <a href="wishlist.html">Wishlist</a></li>
+                      <li>
+
+                        <a href="checkout.html">Checkout</a></li>
+                      <li>
+
+                        <a href="faq.html">FAQ</a></li>
+                      <li>
+
+                        <a href="about.html">About us</a></li>
+                      <li>
+
+                        <a href="contact.html">Contact</a></li>
+                      <li>
+
+                        <a href="404.html">404</a></li>
+                    </ul>
+                    <!--====== End - Dropdown ======-->
+                  </li>
+                  <li class="has-dropdown">
+
+                    <a>BLOG<i class="fas fa-angle-down u-s-m-l-6"></i></a>
+
+                    <!--====== Dropdown ======-->
+
+                    <span class="js-menu-toggle"></span>
+                    <ul style="width:200px">
+                      <li>
+
+                        <a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                      <li>
+
+                        <a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                      <li>
+
+                        <a href="blog-sidebar-none.html">Blog Sidebar None</a></li>
+                      <li>
+
+                        <a href="blog-masonry.html">Blog Masonry</a></li>
+                      <li>
+
+                        <a href="blog-detail.html">Blog Details</a></li>
+                    </ul>
+                    <!--====== End - Dropdown ======-->
+                  </li>
+                  <li>
+
+                    <a href="shop-side-version-2.html">VALUE OF THE DAY</a></li>
+                  <li>
+
+                    <a href="shop-side-version-2.html">GIFT CARDS</a></li>
+                </ul>
+                <!--====== End - List ======-->
+              </div>
+              <!--====== End - Menu ======-->
+            </div>
+            <!--====== End - Dropdown Main plugin ======-->
+
+
+            <!--====== Dropdown Main plugin ======-->
+            
+            <!--====== End - Dropdown Main plugin ======-->
+          </div>
+          <!--====== End - Secondary Nav ======-->
+        </div>
+      </nav>
+      <!--====== End - Nav 2 ======-->
+
+
+      <div class="o-summary__section u-s-m-b-30">
+        <div class="o-summary__box">
+          <h1 class="checkout-f__h1">PAYMENT INFORMATION</h1>
+          <form class="checkout-f__payment">
+            <div class="u-s-m-b-10">
+
+
+              <div class="radio-box">
+
+                <input type="radio" id="cash-on-delivery" name="payment">
+                <div class="radio-box__state radio-box__state--primary">
+
+                  <label class="radio-box__label" for="cash-on-delivery">Cash on Delivery</label></div>
+              </div>
+
+
+              <span class="gl-text u-s-m-t-6">Pay Upon Cash on delivery. (This service is only available for some
+                countries)</span>
+            </div>
+            <div class="u-s-m-b-10">
+
+
+              <div class="radio-box">
+
+                <input type="radio" id="direct-bank-transfer" name="payment">
+                <div class="radio-box__state radio-box__state--primary">
+
+                  <label class="radio-box__label" for="direct-bank-transfer">Direct Bank Transfer</label></div>
+              </div>
+
+
+              <span class="gl-text u-s-m-t-6">Make your payment directly into our bank account. Please use your Order ID
+                as the payment reference. Your order will not be shipped until the funds have cleared in our
+                account.</span>
+            </div>
+            <div class="u-s-m-b-10">
+
+
+              <div class="radio-box">
+
+                <input type="radio" id="pay-with-check" name="payment">
+                <div class="radio-box__state radio-box__state--primary">
+
+                  <label class="radio-box__label" for="pay-with-check">Pay With Check</label></div>
+              </div>
+
+
+              <span class="gl-text u-s-m-t-6">Please send a check to Store Name, Store Street, Store Town, Store State /
+                County, Store Postcode.</span>
+            </div>
+            <div class="u-s-m-b-10">
+
+
+              <div class="radio-box">
+
+                <input type="radio" id="pay-with-card" name="payment">
+                <div class="radio-box__state radio-box__state--primary">
+
+                  <label class="radio-box__label" for="pay-with-card">Pay With Credit / Debit Card</label></div>
+              </div>
+
+
+              <span class="gl-text u-s-m-t-6">International Credit Cards must be eligible for use within the United
+                States.</span>
+            </div>
+            <div class="u-s-m-b-10">
+
+
+              <div class="radio-box">
+
+                <input type="radio" id="pay-pal" name="payment">
+                <div class="radio-box__state radio-box__state--primary">
+
+                  <label class="radio-box__label" for="pay-pal">Pay Pal</label></div>
+              </div>
+
+
+              <span class="gl-text u-s-m-t-6">When you click "Place Order" below we'll take you to Paypal's site to set
+                up your billing information.</span>
+            </div>
+            <div class="u-s-m-b-15">
+
+
+              <div class="check-box">
+
+                <input type="checkbox" id="term-and-condition">
+                <div class="check-box__state check-box__state--primary">
+
+                  <label class="check-box__label" for="term-and-condition">I consent to the</label></div>
+              </div>
+
+
+              <a class="gl-link">Terms of Service.</a>
+            </div>
+            <div>
+
+              <button class="btn btn--e-brand-b-2" type="submit">PLACE ORDER</button>
+              </div>
+          </form>
+        </div>
+      </div>
