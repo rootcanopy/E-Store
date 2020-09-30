@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'profiles.apps.ProfilesConfig',
     'products.apps.ProductsConfig',
     'cart.apps.CartConfig',
+    'checkout.apps.CheckoutConfig',
 ]
 
 MIDDLEWARE = [
@@ -111,7 +112,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-ACCOUNT_USERNAME_MIN_LENGTH = 4
+ACCOUNT_USERNAME_MIN_LENGTH = 6
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/success'
 

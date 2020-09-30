@@ -1,1 +1,47 @@
-{"format":2,"version":"5.1","globals":"6f970bb3fd818c0086bb8745517713d8","files":{"mystore___init___py":{"hash":"af9d0d0de0ea3b71d198bc63f1499a7d","index":{"nums":[1,0,0,0,0,0,0],"html_filename":"mystore___init___py.html","relative_filename":"mystore/__init__.py"}},"mystore_asgi_py":{"hash":"ed215a24380edcf3bccd0ea557913c2f","index":{"nums":[1,4,0,4,0,0,0],"html_filename":"mystore_asgi_py.html","relative_filename":"mystore/asgi.py"}},"mystore_settings_py":{"hash":"23a147500d81b431d8d48c53959401b7","index":{"nums":[1,34,0,0,0,0,0],"html_filename":"mystore_settings_py.html","relative_filename":"mystore/settings.py"}},"mystore_urls_py":{"hash":"6900cdee78785a01838311f409467270","index":{"nums":[1,5,0,0,0,0,0],"html_filename":"mystore_urls_py.html","relative_filename":"mystore/urls.py"}},"mystore_wsgi_py":{"hash":"769b22ce1e8a3b90e670787e1e8cbead","index":{"nums":[1,4,0,4,0,0,0],"html_filename":"mystore_wsgi_py.html","relative_filename":"mystore/wsgi.py"}}}}
+{
+    "format": 2,
+    "version": "5.1",
+    "globals": "6f970bb3fd818c0086bb8745517713d8",
+    "files": {
+        "mystore___init___py": {
+            "hash": "af9d0d0de0ea3b71d198bc63f1499a7d",
+            "index": {
+                "nums": [1, 0, 0, 0, 0, 0, 0],
+                "html_filename": "mystore___init___py.html",
+                "relative_filename": "mystore/__init__.py"
+            }
+        },
+        "mystore_asgi_py": {
+            "hash": "ed215a24380edcf3bccd0ea557913c2f",
+            "index": {
+                "nums": [1, 4, 0, 4, 0, 0, 0],
+                "html_filename": "mystore_asgi_py.html",
+                "relative_filename": "mystore/asgi.py"
+            }
+        },
+        "mystore_settings_py": {
+            "hash": "23a147500d81b431d8d48c53959401b7",
+            "index": {
+                "nums": [1, 34, 0, 0, 0, 0, 0],
+                "html_filename": "mystore_settings_py.html",
+                "relative_filename": "mystore/settings.py"
+            }
+        },
+        "mystore_urls_py": {
+            "hash": "6900cdee78785a01838311f409467270",
+            "index": {
+                "nums": [1, 5, 0, 0, 0, 0, 0],
+                "html_filename": "mystore_urls_py.html",
+                "relative_filename": "mystore/urls.py"
+            }
+        },
+        "mystore_wsgi_py": {
+            "hash": "769b22ce1e8a3b90e670787e1e8cbead",
+            "index": {
+                "nums": [1, 4, 0, 4, 0, 0, 0],
+                "html_filename": "mystore_wsgi_py.html",
+                "relative_filename": "mystore/wsgi.py"
+            }
+        }
+    }
+}

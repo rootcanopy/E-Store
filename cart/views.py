@@ -3,7 +3,7 @@ from django.shortcuts import (
     HttpResponse
 )
 from products.models import Product
-from .models import OrderItem
+
 from django.contrib import messages
 
 
