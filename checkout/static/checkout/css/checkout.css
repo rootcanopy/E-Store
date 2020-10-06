@@ -1,0 +1,261 @@
+.msg {
+    background-color: #ffffff;
+    box-shadow: 0 6px 15px 0 rgba(36, 37, 38, 0.08);
+    padding: 20px;
+}
+
+.msg__text {
+    padding: 8px 0;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.l-f__form {
+    width: 100%;
+}
+
+.l-f .input-text {
+    width: 100%;
+}
+
+.l-f .input-text,
+.l-f .btn {
+    border-radius: 6px;
+}
+
+.l-f .btn {
+    font-weight: 600;
+    padding: 12px 18px;
+}
+
+.c-f__form {
+    position: relative;
+    width: 50%;
+}
+
+.c-f .input-text {
+    width: 100%;
+}
+
+.c-f .input-text,
+.c-f .btn {
+    border-radius: 6px;
+}
+
+.c-f .btn {
+    font-weight: 600;
+    padding: 12px 18px;
+}
+
+.checkout-f {
+    width: 100%;
+}
+
+.checkout-f .input-text,
+.checkout-f .select-box,
+.checkout-f .text-area,
+.checkout-f .btn {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.checkout-f .text-area {
+    height: 185px;
+}
+
+.checkout-f .btn {
+    font-weight: 600;
+    padding: 18px;
+}
+
+.checkout-f__h1 {
+    color: #333333;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.o-summary__section {
+    background-color: #ffffff;
+    border: 1px solid #eee;
+}
+
+.o-summary__box {
+    padding: 20px;
+}
+
+.o-summary__item-wrap {
+    max-height: 228px;
+    padding: 17px;
+    overflow-y: auto;
+}
+
+.o-summary__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.o-summary__table td {
+    color: #333333;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 0;
+}
+
+.o-summary__table td:first-child {
+    text-align: left;
+}
+
+.o-summary__table td {
+    text-align: right;
+}
+
+.o-summary__table tr:last-child td {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ff4500;
+}
+
+.o-card {
+    border: 1px solid #f5f5f5;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 22px;
+}
+
+.o-card:last-child {
+    margin-bottom: 0;
+}
+
+.o-card__flex {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.o-card__img-wrap {
+    display: inline-block;
+    vertical-align: middle;
+    width: 60px;
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+.o-card__img-wrap img {
+    display: block;
+    min-width: 60px;
+}
+
+.o-card__info-wrap {
+    margin-left: 18px;
+}
+
+.o-card__name {
+    display: block;
+}
+
+.o-card__name>a {
+    color: #333333;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.5s;
+}
+
+.o-card__name>a:hover {
+    color: #ff4500;
+}
+
+.o-card__quantity {
+    font-size: 13px;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.o-card__price {
+    display: block;
+    color: #ff4500;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.o-card__del {
+    padding: 10px;
+    font-size: 16px;
+    display: inline-block;
+    color: #333333;
+    transition: color 0.5s;
+}
+
+.o-card__del:hover {
+    color: #ff4500;
+}
+
+.ship-b__text {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    color: #333333;
+    margin-bottom: 4px;
+}
+
+.ship-b__box {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.ship-b__p {
+    margin-bottom: 4px;
+    color: #7f7f7f;
+    font-weight: 600;
+    font-size: 13px;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.ship-b__edit {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+@media (max-width: 575px) {
+    .o-summary__item-wrap {
+        max-height: 466px;
+    }
+
+    .o-card__flex {
+        display: block;
+        padding: 14px;
+        text-align: center;
+    }
+
+    .o-card__info-wrap {
+        margin-left: 0;
+    }
+
+    .ship-b__box {
+        display: block;
+    }
+
+    .ship-b__p {
+        max-width: 100%;
+    }
+}
