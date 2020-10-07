@@ -1,18 +1,58 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} E-Home {% endblock %}
+{% block title %} e-Home {% endblock %}
 
 {% block content %}
 
 <!-- HERO IMAGE ON LANDING PAGE-->
-<header>
-	<div class="container-fluid">
-		<div class="row">
-			<img class="hero" src="{% static 'images/E-commerce.jpg' %}" alt="">
+<section>
+	<div class="slider-area">
+		<div class="slider-active owl-carousel nav-style-1 owl-dot-none">
+			<div class="slider-height-7 bg-glaucous d-flex align-items-center">
+				<div class="container">
+					<div class="row align-items-center slider-h9-mrg">
+						<div class="col-lg-6 col-md-6 col-12 col-sm-6">
+							<div class="slider-content-7 slider-animated-1">
+								<h3 class="animated">New Arrival</h3>
+								<h1 class="animated">New Design <br>Bluetooth Speaker</h1>
+								<div class="slider-btn-9 btn-hover">
+									<a class="animated" href="shop.html">SHOP NOW</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-12 col-sm-6">
+							<div class="slider-singleimg-hm9 slider-animated-1">
+								<img class="animated" src="{% static 'images/single-slide-3.png' %}" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--<div class="slider-height-7 bg-glaucous d-flex align-items-center">
+				<div class="container">
+					<div class="row align-items-center slider-h9-mrg">
+						<div class="col-lg-6 col-md-6 col-12 col-sm-6">
+							<div class="slider-content-7 slider-animated-1">
+								<h3 class="animated">New Arrival</h3>
+								<h1 class="animated">New Design <br>Bluetooth Speaker</h1>
+								<div class="slider-btn-9 btn-hover">
+									<a class="animated" href="shop.html">SHOP NOW</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-12 col-sm-6">
+							<div class="slider-singleimg-hm9 slider-animated-1 ml-100 mr-100">
+								<img class="animated" src="" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>-->
 		</div>
 	</div>
-</header>
+</section>
 
 <!-- ALL PRODUCTS GRID -->
 <section>

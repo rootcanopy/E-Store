@@ -1,162 +1,119 @@
 {% load static %}
-<header class="header-area clearfix header-hm9 transparent-bar">
+<header class="header-area clearfix header-res-padding transparent-bar">
     <div class="container">
-        <div class="header-top-area">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-12">
-                    <div class="language-currency-wrap">
-                        <div class="same-language-currency language-style">
-                            <a href="#">English <i class="fa fa-angle-down"></i></a>
-                            <div class="lang-car-dropdown">
-                                <ul>
-                                    <li><a href="#">Arabic </a></li>
-                                    <li><a href="#">Bangla </a></li>
-                                    <li><a href="#">Hindi  </a></li>
-                                    <li><a href="#">Spanish </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="same-language-currency use-style">
-                            <a href="#">USD  <i class="fa fa-angle-down"></i></a>
-                            <div class="lang-car-dropdown">
-                                <ul>
-                                    <li><a href="#">Taka (BDT) </a></li>
-                                    <li><a href="#">Riyal (SAR) </a></li>
-                                    <li><a href="#">Rupee (INR)  </a></li>
-                                    <li><a href="#">Dirham (AED) </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="same-language-currency">
-                            <p> Call Us +46768909233 </p>
+        <div class="row">
+            <div class="col-xl-2 col-lg-2 col-md-6 col-4">
+                <div class="logo">
+                    <a href="index.html">
+                        <img alt="company logo" src="{% static 'images/eStorelogo.png' %}"
+                            width="130" height="50">
+                    </a>
+                </div>
+            </div>
+
+            <!-- MIDDLE HEAD / SITE NAV -->
+            <div class="col-xl-8 col-lg-8 d-none d-lg-block">
+                <div class="main-menu">
+                    <nav>
+                        <ul>
+                            <li><a href="">Home </a></li>
+                            <li><a href=""> Shop </a></li>
+                            <li><a href="">Blog </a></li>
+                            <li><a href=""> About </a></li>
+                            <li><a href=""> Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- SEARCH FUNCTION -->
+            <div class="col-xl-2 col-lg-2 col-md-6 col-8">
+                <div class="header-right-wrap">
+                    <div class="same-style header-search">
+                        <a class="search-active" href="#"><i class="fas fa-search"></i></a>
+                        <div class="search-content">
+                            <form action="#">
+                            {% csrf_token %}
+                                <input type="text" placeholder="Search">
+                                <button class="button-search"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div> 
+                    </div>
+
+                    <!-- USER ACCOUNT -->
+                    <div class="same-style account-satting">
+                        <a class="account-satting-active" href="#"><i class="fas fa-user"></i></a>
+                        <div class="account-dropdown">
+                            <ul>
+                                <li><a href="">Login</a></li>
+                                <li><a href="">Register</a></li>
+                                <li><a href="">Wishlist  </a></li>
+                                <li><a href="">my account</a></li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 d-none d-lg-block">
-                    <div class="logo-hm9 text-center">
-                        <a href="index.html">
-                            <img alt="company logo" src="{% static 'images/eStorelogo.png' %}"
-                                width="130" height="50">
-                        </a>
+
+                    <!-- WISHLIST -->
+                    <div class="same-style header-wishlist">
+                        <a href=""><i class="fas fa-heart"></i></a>
                     </div>
-                </div>
 
-                <!-- SEARCH FUNCTION -->
-                <div class="col-lg-5 col-md-4 col-12">
-                    <div class="header-right-wrap">
-                        <div class="same-style header-search">
-                            <a class="search-active" href="#"><i class="fas fa-search"></i></a>
-                            <div class="search-content">
-                                <form action="#">
-                                {% csrf_token %}
-                                    <input type="text" placeholder="Search" />
-                                    <button class="button-search"><i class="fas fa-search"></i></button>
-                                </form>
-                            </div> 
-                        </div>
+                    <!-- SHOPPING CART COUNTER -->
+                    <div class="same-style cart-wrap">
+                        <button class="icon-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="count-style"> {{ product_count }}</span>
+                        </button>
 
-                        <!-- USER ACCOUNT -->
-                        <div class="same-style account-satting">
-                            <a class="account-satting-active" href="#"><i class="fas fa-user"></i></a>
-                            <div class="account-dropdown">
-                                <ul>
-                                    <li><a href="">Login</a></li>
-                                    <li><a href="">Register</a></li>
-                                    <li><a href="">Wishlist  </a></li>
-                                    <li><a href="">my account</a></li>
-                                </ul>
+                        <!-- POPOVER NAV CART -->
+                        <div class="shopping-cart-content">
+                        {% for order_item in order_items %}
+                            <ul>
+                                <li class="single-shopping-cart">
+                                    <div class="shopping-cart-img">
+                                        <a href="#"><img class="img-thumbnail"
+                                            width="55" height="55"
+                                            alt="{{ order_item.product.name }}" 
+                                                src="{{ order_item.product.image_url }}">
+                                        </a>
+                                    </div>
+                                    <div class="shopping-cart-title">
+                                        <h4><a href="#"> {{ order_item.product.name }} </a></h4>
+                                        <h6>Qty: {{ order_item.quantity }} </h6>
+                                        <span> € {{ order_item.product.price }} </span>
+                                    </div>
+                                    <div class="shopping-cart-delete">
+                                        <a href="#"><i class="fa fa-times-circle"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        {% endfor %}
+                            <div class="shopping-cart-total">
+                                <h4>Shipping : <span>€ 20.00</span></h4>
+                                <h4>Total : <span class="shop-total"> € {{ grand_total }} </span></h4>
                             </div>
-                        </div>
-
-                        <!-- WISHLIST -->
-                        <div class="same-style header-wishlist">
-                            <a href=""><i class="fas fa-heart"></i></a>
-                        </div>
-
-                        <!-- SHOPPING CART COUNTER -->
-                        <div class="same-style cart-wrap">
-                            <button class="icon-cart">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="count-style"> {{ product_count }}</span>
-                            </button>
-
-                            <!-- POPOVER NAV CART -->
-                            <div class="shopping-cart-content">
-                            {% for order_item in order_items %}
-                                <ul>
-                                    <li class="single-shopping-cart">
-                                        <div class="shopping-cart-img">
-                                            <a href="#"><img class="img-thumbnail"
-                                                width="55" height="55"
-                                                alt="{{ order_item.product.name }}" 
-                                                    src="{{ order_item.product.image_url }}">
-                                            </a>
-                                        </div>
-                                        <div class="shopping-cart-title">
-                                            <h4><a href="#"> {{ order_item.product.name }} </a></h4>
-                                            <h6>Qty: {{ order_item.quantity }} </h6>
-                                            <span> € {{ order_item.product.price }} </span>
-                                        </div>
-                                        <div class="shopping-cart-delete">
-                                            <a href="#"><i class="fa fa-times-circle"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            {% endfor %}
-                                <div class="shopping-cart-total">
-                                    <h4>Shipping : <span>€ 20.00</span></h4>
-                                    <h4>Total : <span class="shop-total"> € {{ grand_total }} </span></h4>
-                                </div>
-                                <div class="shopping-cart-btn btn-hover text-center">
-                                    <a class="default-btn" href="cart-page.html">view cart</a>
-                                    <a class="default-btn" href="checkout.html">checkout</a>
-                                </div>
+                            <div class="shopping-cart-btn btn-hover text-center">
+                                <a class="default-btn" href="cart-page.html">view cart</a>
+                                <a class="default-btn" href="checkout.html">checkout</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- BOTTOM HEAD / SITE NAV -->
-    <div class="header-bottom sticky-bar header-res-padding header-padding-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 d-block d-lg-none">
-                    <div class="logo">
-                        <a href="index.html">
-                            <img alt="" src="assets/img/logo/logo.png">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-12 col-lg-12 d-none d-lg-block">
-                    <div class="main-menu">
-                        <nav>
-                            <ul>
-                                <li><a href="index.html">Home </a></li>
-                                <li><a href="shop.html"> Shop </a></li>
-                                <li><a href="blog.html">Blog </a></li>
-                                <li><a href="about.html"> About </a></li>
-                                <li><a href="contact.html"> Contact</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <!-- MOBILE NAV -->
-            <div class="mobile-menu-area">
-                <div class="mobile-menu">
-                    <nav id="mobile-menu-active">
-                        <ul class="menu-overflow">
-                            <li><a href="index.html">HOME</a></li>
-                            <li><a href="shop.html">Shop</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
+        <!-- MOBILE NAV -->
+        <div class="mobile-menu-area">
+            <div class="mobile-menu">
+                <nav id="mobile-menu-active">
+                    <ul class="menu-overflow">
+                        <li><a href="">HOME</a></li>
+                        <li><a href="">Shop</a></li>
+                        <li><a href="">Blog</a></li>
+                        <li><a href="">About us</a></li>
+                        <li><a href="">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
