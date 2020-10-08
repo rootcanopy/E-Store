@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xl-2 col-lg-2 col-md-6 col-4">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="{% url 'home' %}">
                         <img alt="company logo" src="{% static 'images/eStorelogo.png' %}"
                             width="130" height="50">
                     </a>
@@ -94,7 +94,7 @@
                                 <h4>Total : <span class="shop-total"> € {{ grand_total }} </span></h4>
                             </div>
                             <div class="shopping-cart-btn btn-hover text-center">
-                                <a class="default-btn" href="cart-page.html">view cart</a>
+                                <a class="default-btn" href="{% url 'view_cart' %}">view cart</a>
                                 <a class="default-btn" href="checkout.html">checkout</a>
                             </div>
                         </div>
