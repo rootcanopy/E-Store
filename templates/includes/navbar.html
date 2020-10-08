@@ -33,9 +33,9 @@
                     <div class="same-style header-search">
                         <a class="search-active" href="#"><i class="fas fa-search"></i></a>
                         <div class="search-content">
-                            <form action="#">
+                            <form action="" method="GET">
                             {% csrf_token %}
-                                <input type="text" placeholder="Search">
+                                <input class="form-control" name="query" type="text" placeholder="Search">
                                 <button class="button-search"><i class="fas fa-search"></i></button>
                             </form>
                         </div> 

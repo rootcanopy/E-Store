@@ -21,7 +21,7 @@ class Product(models.Model):
         index_together = (('id', 'slug'),)
 
     def get_absolute_url(self):
-        return reverse('products:product_details', kwargs={'slug': self.slug})
+        return reverse('products:product_detail', args=[self.id, self.slug])
 
     def __str__(self):
         return self.name

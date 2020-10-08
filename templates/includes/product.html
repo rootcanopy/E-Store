@@ -9,16 +9,19 @@
         <div class="tab-content jump">
             <div class="tab-pane" id="product-1">
                 <div class="row">
-                {% for product in products %}
+                    {% for product in products %}
                     <div class="col-xl-3 col-md-6 col-lg-4 col-sm-6">
                         <div class="product-wrap mb-35">
-                        <!-- PRODUCT IMAGE -->
+
+                            <!-- PRODUCT IMAGE -->
                             <div class="product-img">
-                                <a href="product-details.html">
-                                    <img class="default-img img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
-                                    <img class="hover-img img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img class="default-img img-fluid" max-height="370" max-width="290"
+                                        src="{{ product.image_url }}" alt="{{ product.name }}">
+                                    <img class="hover-img img-fluid" src="{{ product.image_url }}"
+                                        alt="{{ product.name }}">
                                 </a>
-                                
+
                                 <!--<span class="pink">-10%</span>-->
                                 <!-- PRODUCT ACTIONS -->
                                 <div class="product-action">
@@ -29,7 +32,8 @@
                                         <a title="Add To Cart" href="#"><i class="pe-7s-cart"></i> Add to cart</a>
                                     </div>
                                     <div class="pro-same-action pro-quickview">
-                                        <a title="Quick View" href="#" data-toggle="modal" data-target="#exampleModal"><i class="far fa-eye"></i></a>
+                                        <a title="Quick View" href="#" data-toggle="modal"
+                                            data-target="#exampleModal"><i class="far fa-eye"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -44,14 +48,15 @@
                                     <i class="fa fa-star-o"></i>
                                 </div>
                                 <!-- PRODUCT PRICE -->
+                                
                                 <div class="product-price">
-                                    <span> {{ product.price }}</span>
-                                    <span class="old">$ 60.00</span>
+                                    <span> € {{ product.price }}</span>
+                                    <span class="old">€ 60.00</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
