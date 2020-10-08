@@ -17,9 +17,9 @@
                 <div class="main-menu">
                     <nav>
                         <ul>
-                            <li><a href="">Home </a></li>
+                            <li><a href="{% url 'home' %}"> Home </a></li>
                             <li><a href=""> Shop </a></li>
-                            <li><a href="">Blog </a></li>
+                            <li><a href=""> Blog </a></li>
                             <li><a href=""> About </a></li>
                             <li><a href=""> Contact</a></li>
                         </ul>
@@ -90,7 +90,7 @@
                             </ul>
                         {% endfor %}
                             <div class="shopping-cart-total">
-                                <h4>Shipping : <span>€ 20.00</span></h4>
+                                <h4>Shipping : <span>€ {{ delivery }} </span></h4>
                                 <h4>Total : <span class="shop-total"> € {{ grand_total }} </span></h4>
                             </div>
                             <div class="shopping-cart-btn btn-hover text-center">

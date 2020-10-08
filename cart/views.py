@@ -15,7 +15,7 @@ def view_cart(request):
 def add_to_cart(request, product_id):
     """ ADD A PRODUCT AND QTY TO THE CART """
     product = get_object_or_404(Product, id=product_id)
-    quantity = request.POST.get('quantity') # this needs attn
+    quantity = int(request.POST.get('quantity')) # this needs attn
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
 
@@ -27,6 +27,7 @@ def add_to_cart(request, product_id):
         messages.info(request, "Product added to your cart.")
 
     request.session['cart'] = cart
+    print(request.session['cart'])
     return redirect(redirect_url)
 
 
