@@ -8,7 +8,7 @@
 
 <!-- BREADCRUMBS -->
 <div class="breadcrumb-area pt-35 pb-35 bg-gray-3">
-    <div class="container-fluid">
+    <div class="container">
         <div class="breadcrumb-content text-center">
             <ul>
                 <li>
@@ -33,15 +33,7 @@
                             
                             <!-- PRODUCT IMAGE -->
                                 <div id="shop-details-1" class="tab-pane large-img-style">
-                                    <img src="{{ product.image_url }}" alt="{{ product.name }}">
-                                    
-                                    <!--<span class="dec-price">-10%</span>-->
-
-                                    <div class="img-popup-wrap">
-                                        <a class="img-popup" href="">
-                                            <i class="fas fa-expand-arrows-alt"></i>
-                                        </a>
-                                    </div>
+                                    <img class="img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
                                 </div>
                             </div>
 
@@ -120,8 +112,9 @@
                                         </button>
                                     </div>
 
-                                    <input type="submit" class="pro-details-cart btn-hover" value="Add to Cart">
+                                    
                                 </div>
+                                <input type="submit" class="pro-details-cart btn-hover" value="Add to Cart">
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                             </div>
 

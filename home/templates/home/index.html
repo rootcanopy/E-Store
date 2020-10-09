@@ -11,65 +11,6 @@
 <!-- BANNER -->
 {% include 'includes/banner.html' %}
 
-<!-- ALL PRODUCTS GRID
-<section>
-	<div class="container py-4">
-		<div class="row">
-			<div class="col-10 mx-auto text-center">
-				<h1 class="text-capitalize font-weight-bold">
-					all products
-				</h1>
-			</div>
-		</div>
-	</div>
-</section> -->
-
-<!-- PRODUCT GRID -->
 {% include 'includes/product.html' %}
-
-<!-- PRODUCT GRID -->
-<!--<main class="container py-5">
-	<div class="row">
-	{% for product in products %}
-		<div class="col-9 col-md-6 col-lg-3 mx-auto">
-			<div class="card mb-4">
-
-				<!-- CARD IMAGE 
-				<div class="view overlay p-4">
-					<a href="{{ product.get_absolute_url }}">
-						<img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
-					</a>
-						<div class="mask rgba-white-slight"></div>
-				</div>
-
-				<!--CARD CONTENT 
-				<div class="card-body text-center">
-					<!-- CATEGORY & NAME 
-					<a href="{{ category.get_absolute_url }}" class="grey-text">
-						<h5>{{ product.category }}</h5>
-					</a>
-					{% if product.rating %}
-						<small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-					{% else %}
-						<small class="text-muted">No Rating</small>
-					{% endif %}
-					<h5>
-						<strong>
-							<a href="{{ product.get_absolute_url }}" class="dark-grey-text">{{ product.name }}
-								<span class="badge badge-pill danger-color">NEW</span>
-							</a>
-						</strong>
-					</h5>
-
-					<h4 class="font-weight-bold blue-text">
-						<strong>€ {{ product.price }} </strong>
-					</h4>
-				</div>
-
-			</div>
-		</div>
-	{% endfor %}
-	</div>
-</main>-->
 
 {% endblock %}

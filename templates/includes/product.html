@@ -16,7 +16,7 @@
                             <!-- PRODUCT IMAGE -->
                             <div class="product-img">
                                 <a href="{{ product.get_absolute_url }}">
-                                    <img class="default-img img-fluid" max-height="370" max-width="290"
+                                    <img class="img-fluid"
                                         src="{{ product.image_url }}" alt="{{ product.name }}">
                                     <img class="hover-img img-fluid" src="{{ product.image_url }}"
                                         alt="{{ product.name }}">
@@ -29,7 +29,7 @@
                                         <a title="Wishlist" href="wishlist.html"><i class="fas fa-heart"></i></a>
                                     </div>
                                     <div class="pro-same-action pro-cart">
-                                        <a title="Add To Cart" href="#"><i class="pe-7s-cart"></i> Add to cart</a>
+                                        <a title="Add To Cart" href="{% url 'add_to_cart' product.id %}"><i class="pe-7s-cart"></i> Add to cart</a>
                                     </div>
                                     <div class="pro-same-action pro-quickview">
                                         <a title="Quick View" href="#" data-toggle="modal"
