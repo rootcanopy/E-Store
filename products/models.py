@@ -20,9 +20,6 @@ class Product(models.Model):
         verbose_name_plural = 'products'
         index_together = (('id', 'slug'),)
 
-    def get_absolute_url(self):
-        return reverse('products:product_detail', args=[self.id, self.slug])
-
     def __str__(self):
         return self.name
 

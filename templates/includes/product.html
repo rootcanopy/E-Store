@@ -15,11 +15,9 @@
 
                             <!-- PRODUCT IMAGE -->
                             <div class="product-img">
-                                <a href="{{ product.get_absolute_url }}">
+                                <a href="{% url 'products:product_detail' product.id %}">
                                     <img class="img-fluid"
                                         src="{{ product.image_url }}" alt="{{ product.name }}">
-                                    <img class="hover-img img-fluid" src="{{ product.image_url }}"
-                                        alt="{{ product.name }}">
                                 </a>
 
                                 <!--<span class="pink">-10%</span>-->

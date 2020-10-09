@@ -2,11 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
 
 
-def product_detail(request, id, slug):
+def product_detail(request, product_id):
     """ INDIVIDUAL PRODUCT DETAILS """
-    product = get_object_or_404(Product,
-                                slug=slug,
-                                id=id)
+    product = get_object_or_404(Product, id=product_id)
 
     context = {
         'product': product,

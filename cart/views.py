@@ -46,26 +46,9 @@ def update_cart(request, product_id):
     return redirect(reverse('view_cart'))
 
 
-"""
-def remove_from_cart(request, product_id):
-    # VIEW TO REMOVE A PRODUCT FROM CART
-    try:
-        product = get_object_or_404(Product, pk=product_id)
-        cart = request.session.get('cart', {})
-
-        cart.pop(product_id)
-        messages.success(request, f'Removed {product.name} from your bag')
-
-        request.session['cart'] = cart
-        return HttpResponse(status=200)
-    except Exception as e:
-        return HttpResponse(status=500)
-"""
-
-
 def remove_from_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    cart = request.session.GET('cart', {})
+    cart = request.session.get('cart', {})
     cart.pop(product_id)
     messages.success(request, f'Removed {product.name} from your cart')
     request.session['cart'] = cart
