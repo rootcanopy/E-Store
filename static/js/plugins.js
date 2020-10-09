@@ -11670,9 +11670,6 @@ function (t, e) {
     return new a(this, e)
   }
 }, function (e, t, n) {}]);
-//# sourceMappingURL=slinky.min.js.map
-
-
 
 
 /*
@@ -13734,7 +13731,6 @@ function (t, i, e) {
     }
   }()
 }(window, jQuery);
-//# sourceMappingURL=scrolloverflow.min.js.map
 
 
 /*!
@@ -14810,10 +14806,6 @@ function (t, i, e) {
       Yo = mo
   }
 });
-//# sourceMappingURL=jquery.fullpage.min.js.map
-
-
-
 
 /*! WOW - v1.1.3 - 2016-05-06
  * Copyright (c) 2016 Matthieu Aussaguel;*/
