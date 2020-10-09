@@ -37,18 +37,6 @@
                                 </div>
                             </div>
 
-                            <!-- ADDITIONAL PHOTOS -->
-                            <div class="shop-details-tab nav">
-                                <a class="shop-details-overly" href="#shop-details-1" data-toggle="tab">
-                                    <img src="" alt="">
-                                </a>
-                                <a class="shop-details-overly active" href="#shop-details-2" data-toggle="tab">
-                                    <img src="" alt="">
-                                </a>
-                                <a class="shop-details-overly" href="#shop-details-3" data-toggle="tab">
-                                    <img src="" alt="">
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,56 +68,58 @@
                     <p> {{ product.description }} </p>
 
                     <!-- QUANTITY INPUT -->
-                    <div class="pro-details-quality">
-                        <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
-                        {% csrf_token %}    
-                            <div class="form-group">
-                                <div class="input-group">
+                    <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-5 mt-5">
+                                <div class="form-group">
+                                    <div class="input-group">
 
-                                    <!-- DECREASE QUANTITY -->
-                                    <div class="input-group-prepend">
-                                        <button class="decrement-qty btn btn-black rounded-0" 
-                                            data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-                                    <!-- INPUT BOX -->
-                                    <input class="qty_input"
-                                        type="number" name="quantity" min="1" max="99" value="1"
-                                            data-item_id="{{ product.id }}"
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-black" 
+                                                data-product_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-minus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        
+                                        <input class="qty_input" type="number"
+                                            name="quantity" value="1" min="1" max="99"
+                                            data-product_id="{{ product.id }}"
                                             id="id_qty_{{ product.id }}">
-
-                                    <!-- INCREASE QUANTITY -->
-                                    <div class="input-group-append">
-                                        <button class="increment-qty btn btn-black rounded-0"
-                                            data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
+                                
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn btn-black rounded-0"
+                                                data-product_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-plus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        
                                     </div>
-
-                                    
                                 </div>
-                                <input type="submit" class="pro-details-cart btn-hover" value="Add to Cart">
-                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
                             </div>
 
-                        </form>
 
-                        <!--<div class="pro-details-cart btn-hover">
-                            <a href="#">Add To Cart</a>
-                        </div>-->
+                            <input type="submit" class="pro-details-cart btn-hover" value="Add to Bag">
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
 
-                        <div class="pro-details-wishlist">
-                            <a href="#"><i class="fa fa-heart-o fa-2x"></i></a>
                         </div>
-                        <div class="pro-details-compare">
-                            <a href="#"><i class="pe-7s-shuffle"></i></a>
-                        </div>
+                    </form>
+
+                    <!--<div class="pro-details-cart btn-hover">
+                        <a href="#">Add To Cart</a>
+                    </div>-->
+
+                    <div class="pro-details-wishlist">
+                        <a href="#"><i class="fa fa-heart-o fa-2x"></i></a>
                     </div>
+                    <div class="pro-details-compare">
+                        <a href="#"><i class="pe-7s-shuffle"></i></a>
+                    </div>
+
 
                     <!-- CATEGORY -->
                     <div class="pro-details-meta">
@@ -154,4 +144,9 @@
         </div>
     </div>
 </main>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/qty_input.html' %}
 {% endblock %}

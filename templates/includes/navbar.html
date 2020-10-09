@@ -72,7 +72,7 @@
                             <ul>
                                 <li class="single-shopping-cart">
                                     <div class="shopping-cart-img">
-                                        <a href="#">
+                                        <a href=""> # TODO
                                         <img class="img-thumbnail"
                                             alt="{{ order_item.product.name }}" 
                                                 src="{{ order_item.product.image_url }}">
@@ -93,8 +93,10 @@
                                 <h4>Shipping : <span>€  </span></h4>
                                 <h4>Total : <span class="shop-total"> € </span></h4>
                             </div>
+                            
                             <div class="shopping-cart-btn btn-hover text-center">
                                 <a class="default-btn" href="{% url 'view_cart' %}">view cart</a>
+
                                 <a class="default-btn" href="checkout.html">checkout</a>
                             </div>
                         </div>

@@ -2,10 +2,15 @@
 {% load static %}
 {% load cart_tools %}
 
-{% block title %} Your Cart {% endblock title %}
+{% block title %} Cart {% endblock title %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'cart/css/cart.css' %}">
+{% endblock %}
 
 {% block content %}
 
+<!-- BREADCRUMB -->
 <div class="breadcrumb-area pt-35 pb-35 bg-gray-3">
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
@@ -17,128 +22,143 @@
     </div>
 </div>
 
-<div class="cart-main-area pt-90 pb-100">
-    <div class="container">
-        <h3 class="cart-page-title"> Your shopping cart </h3>
+<!-- THE CART -->
+<main class="container mt-20">
+    <div class="row">
+        <div class="col">
+
+            <h3 class="cart-page-title"> Your shopping cart </h3>
+            <hr>
+        </div>
+    </div>
+            
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-
+            <div class="col">
+            {% if order_items %}
+                <br>
+                <div class="table-responsive">
                 <!-- CART TABLE -->
-                    <div class="table-content table-responsive cart-table-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Until Price</th>
-                                    <th scope="col">Qty</th>
-                                    <th scope="col">Subtotal</th>
-                                    <th scope="col">action</th>
-                                </tr>
-                            </thead>
+                    <table class="table table-sm table-border-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                        </thead>
 
-                            <tbody>
-                                {% for order_item in order_items %}
-                                <tr>
-                                    <td class="product-thumbnail">
-                                        <a href="#">
-                                            <img class="thumbnail" src="{{ order_item.image_url }}" 
-                                                alt="{{ order_item.product.name }}">
-                                        </a>
-                                    </td>
+                        {% for order_item in order_items %}
+                            <tr>
+                                <td class="p-3 w-25">
+                                    <img class="w-100" src="{{ order_item.product.image_url }}"
+                                        alt="{{ order_item.product.name }}">
+                                </td>
 
-                                    <td class="product-name">
-                                        <a href=""> {{ order_item.product.name }} </a>
-                                    </td>
+                                <td class="py-5">
+                                    <p class="my-0"><strong> {{ order_item.product.name }} </strong></p>
+                                </td>
 
-                                    <td class="product-price-cart">
-                                        <span class="amount">€ {{ order_item.product.price }}</span>
-                                    </td>
+                                <td class="py-5">
+                                    <p class="my-0">€ {{ order_item.product.price }} </p>
+                                </td>
 
-                                    <td class="product-quantity">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="{{ order_item.quantity }}">
-                                        </div>
-                                    </td>
+                                <td class="py-3 w-25">
+                                    <form class="form update-form" method="POST" action="">
+                                    {% csrf_token %}
+                                        <input class="" type="number" name="quantity"
+                                            value="{{ order_item.quantity }}">
+                                    </form>
+                                </td>
 
-                                    <td class="product-subtotal"> € {{ order_item.product.price }} </td>
+                                <td class="py-3"> € {{ order_item.product.price }} </td>
 
-                                    <td class="product-remove">
-                                        <a href="#"><i class="fa fa-pencil"></i></a>
-                                        <a href="#"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- NAV BUTTONS  -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cart-shiping-update-wrapper">
+                    <div class="cart-shiping-update">
+                        <a href="#">Continue Shopping</a>
                     </div>
-
-                    <!-- NAV BUTTONS  -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="cart-shiping-update-wrapper">
-                                <div class="cart-shiping-update">
-                                    <a href="#">Continue Shopping</a>
-                                </div>
-                                <div class="cart-clear">
-                                    <button>Update Shopping Cart</button>
-                                    <a href="#">Clear Shopping Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                <!-- VOUCHER DISCOUNT -->
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="discount-code-wrapper">
-                            <div class="title-wrap">
-                                <h4 class="cart-bottom-title section-bg-gray">Use Coupon Code</h4>
-                            </div>
-                            <div class="discount-code">
-                                <p>Enter your coupon code if you have one.</p>
-                                <form>
-                                    <input type="text" required="" name="name">
-                                    <button class="cart-btn-2" type="submit">Apply Coupon</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ORDER SUMMARY -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="grand-totall">
-                            <div class="title-wrap">
-                                <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
-                            </div>
-                            <h5>Total products <span> € {{ total }} </span></h5>
-                            <div class="total-shipping">
-                                <h5>Total shipping</h5>
-                                <ul>
-                                    <li><input type="checkbox"> Standard 
-                                        <span> € {{ delivery }} </span>
-                                    </li>
-                                    
-                                    <li><input type="checkbox"> Express <span>$30.00</span></li>
-                                </ul>
-                            </div>
-                            <h4 class="grand-totall-title">Grand Total <span> € {{ grand_total }}</span></h4>
-                            <a href="#">Proceed to Checkout</a>
-                        </div>
+                    <div class="cart-clear">
+                        <button>Update Shopping Cart</button>
+                        <a href="#">Clear Shopping Cart</a>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- VOUCHER DISCOUNT -->
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="discount-code-wrapper">
+                    <div class="title-wrap">
+                        <h4 class="cart-bottom-title section-bg-gray">Use Coupon Code</h4>
+                    </div>
+                    <div class="discount-code">
+                        <p>Enter your coupon code if you have one.</p>
+                        <form>
+                            <input type="text" required="" name="name">
+                            <button class="cart-btn-2" type="submit">Apply Coupon</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ORDER SUMMARY -->
+            <div class="col-lg-4 col-md-6">
+                <div class="grand-totall">
+                    <div class="title-wrap">
+                        <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                    </div>
+                    <h5>Total products <span> € {{ total }} </span></h5>
+                    <div class="total-shipping">
+                        <h5>Total shipping</h5>
+                        <ul>
+                            <li><input type="checkbox"> Standard
+                                <span> € {{ delivery|floatformat:2 }} </span>
+                            </li>
+
+                            <li><input type="checkbox"> Express <span>$30.00</span></li>
+                        </ul>
+                    </div>
+
+                    <h4 class="grand-totall-title">Grand Total <span> € {{ grand_total|floatformat:2 }}</span></h4>
+                    <a href="#">Proceed to Checkout</a>
+
+                </div>
+            </div>
+        </div>
+
+
+        {% else %}
+        <p class="lead mb-5">Your cart is empty.</p>
+        <a href="{% url 'home' %}" class="btn bg-purple btn-lg">
+            <span class="icon">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+
+            <span class="text-uppercase">Keep Shopping</span>
+        </a>
+        {% endif %}
+
+        </div>
     </div>
-</div>
-</div>
+</main>
 
 
 
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
-{% include 'cart/includes/qty_input.html' %}
-
 {% endblock %}
