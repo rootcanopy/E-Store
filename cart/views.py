@@ -27,7 +27,6 @@ def add_to_cart(request, product_id):
         messages.info(request, "Product added to your cart.")
 
     request.session['cart'] = cart
-    print(request.session['cart'])
     return redirect(redirect_url)
 
 
@@ -40,7 +39,7 @@ def update_cart(request, product_id):
     if quantity > 0:
         cart[product_id] = quantity
     else:
-        cart.pop(product_id)
+        cart.pop[product_id]
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
