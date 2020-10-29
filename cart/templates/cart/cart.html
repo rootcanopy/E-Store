@@ -199,13 +199,13 @@
 
 <script type="text/javascript">
     // update qty on click 
-    $('.update-link').click(function (e) {
+    $('.update-link').click(function(e) {
         var form = $(this).prev('.update-form');
         form.submit();
     })
 
     //Delete
-    $('.remove-product').click(function (e) {
+    $('.remove-product').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
         var productId = $(this).attr('id').split('remove_')[1];
         var url = `/cart/remove/${productId}/`;
