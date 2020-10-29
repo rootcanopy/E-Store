@@ -1,18 +1,6 @@
 (function ($) {
     "use strict";
 
-    /* Cart search */
-    $(".account-satting-active , .search-active").on("click", function (e) {
-        e.preventDefault();
-        $(this).parent().find('.account-dropdown , .search-content').slideToggle('medium');
-    })
-
-    /* Cart dropdown */
-    var iconCart = $('.icon-cart');
-    iconCart.on('click', function () {
-        $('.shopping-cart-content').toggleClass('cart-visible');
-    })
-
     /* Slider active */
     $('.slider-active').owlCarousel({
         loop: true,
@@ -546,17 +534,6 @@
         });
     }
     itemToggler3();
-
-
-    /*--------------------------
-        ScrollUp
-    ---------------------------- */
-    $.scrollUp({
-        scrollText: '<i class="fa fa-angle-double-up"></i>',
-        easingType: 'linear',
-        scrollSpeed: 900,
-        animation: 'fade'
-    });
 
 
     /*--------------------------

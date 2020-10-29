@@ -19,6 +19,7 @@ class CheckoutForm(forms.ModelForm):
             'full_name': 'Full Name',
             'email': 'Email Address',
             'phone_number': 'Phone Number',
+            'country': 'Country',
             'postcode': 'Postal Code',
             'town_or_city': 'Town or City',
             'address': 'Street Address 1',

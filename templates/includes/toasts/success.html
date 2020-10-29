@@ -11,43 +11,46 @@
 
     <div class="toast-body bg-white">
         <div class="row">
-            <div class="col">
+            <div class="col mr-2">
                 {{ message }}
                 <hr class="mt-1 mb-3">
             </div>
         </div>
 
-        <div class="shopping-cart-content">
-        {% if grand_total %}        
-            <ul>
-                <li class="single-shopping-cart">
-                    <div class="shopping-cart-img">
-                        <a href="">
-                        <img class="img-thumbnail"
-                            alt="{{ order_item.product.name }}" 
-                                src="{{ order_item.product.image_url }}">
-                        </a>
-                    </div>
-                    <div class="shopping-cart-title">
-                        <h4><a href="#"> {{ order_item.product.name }} </a></h4>
-                        <h6>Qty: {{ order_item.quantity }} </h6>
-                        <span> € {{ order_item.product.price }} </span>
-                    </div>
-                    <div class="shopping-cart-delete">
-                        <a href=""><i class="fa fa-times-circle"></i></a>
-                    </div>
-                </li>
-            </ul>
+        {% if grand_total %}
+        <div class="bag-notification-wrapper">
+            {% for order_item in order_items %}
+            <div class="row">
+                <div class="col-3 my-1">
+                    <img class="w-100" alt="{{ order_item.product.name }}" src="{{ order_item.product.image_url }}">
+                </div>
 
-            <div class="shopping-cart-total">
-                <h4>Shipping : <span>€  </span></h4>
-                <h4>Total : <span class="shop-total"> € </span></h4>
+                <div class="col-9">
+                    <a href="">
+                        <i class="float-right mt-0 fa fa-times-circle"></i>
+                    </a>
+                    <p> {{ order_item.product.name }} </p>
+                    <p>Qty: {{ order_item.quantity }} </p>
+                    <span> € {{ order_item.product.price }} </span>
+                
+                </div>
             </div>
+            {% endfor %}
+        </div>
             
+
+        <div class="row">
+            <div class="col">
+                <p class="mr-5"><strong>Total{% if free_delivery_delta > 0 %} (Exc. delivery){% endif %}:
+                    <span class="float-right"> € {{ total|floatformat:2 }} </span>
+                    </strong>
+                </p>
+            </div>
+
             <div class="shopping-cart-btn btn-hover text-center">
                 <a class="default-btn" href="{% url 'view_cart' %}">view cart</a>
 
-                <a class="default-btn" href="checkout.html">checkout</a>
+                <a class="default-btn" href="{% url 'checkout' %}">checkout</a>
             </div>
         </div>
         {% endif %}

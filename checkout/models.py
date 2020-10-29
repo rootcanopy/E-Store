@@ -27,7 +27,7 @@ class Order(models.Model):
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
 
-    def generate_order_id(self):
+    def _generate_order_id(self):
         # GENERATES ORDER NUMBER
         return uuid.uuid4().hex.upper()
     
@@ -45,7 +45,7 @@ class Order(models.Model):
         # OVERRIDE ORIG SAVE METHOD TO SET ORDER ID
         # IF ! BEEN SET ALREADY
         if not save.order_id:
-            self.order_id = self.generate_order_id()
+            self.order_id = self._generate_order_id()
         super().save(*args, **kwargs)
 
     def __str__(self):
