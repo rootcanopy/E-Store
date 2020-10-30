@@ -1,6 +1,7 @@
 from django.shortcuts import (
-    render, redirect, reverse, get_object_or_404
+    render, redirect, reverse, get_object_or_404, HttpResponse
 )
+from django.views.decorators.http import require_POST
 from django.conf import settings
 from django.contrib import messages
 from .forms import CheckoutForm
@@ -32,11 +33,9 @@ def checkout(request):
             'county': request.POST['county'],
         }
         checkout_form = CheckoutForm(form_data)
-
         if checkout_form.is_valid():
             order = checkout_form.save()
-            order.orginal_bag = json.dumps(cart)
-            for product_id in cart.items():
+            for product_id, quantity in cart.items():
                 try:
                     product = Product.objects.get(id=product_id)
                     if isinstance(quantity, int):
@@ -76,10 +75,11 @@ def checkout(request):
 
     template = 'checkout/checkout.html'
     context = {
-        'checkout_form': checkout_form,
+        'checkout_form': CheckoutForm(),
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }
+
     return render(request, template, context)
 
 
@@ -99,3 +99,20 @@ def checkout_success(request, order_id):
         'order': order,
     }
     return render(request, template, context)
+
+
+@require_POST
+def cache_checkout_data(request):
+    try:    
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key=settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'bag': json.dumps(request.session.get('bag', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment cannot be \
+            processed right now. Please try again later.' )
+        return HttpResponse(content=e, status=400)

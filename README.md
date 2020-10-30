@@ -19,7 +19,7 @@ wireframes
 
 > As a user I want to be able to view all products available in the store.
 >
-> As a user I want to be able to buy the product and recieve a receipt
+> As a user I want to be able to buy the product and recieve the receipt
 >
 > As a user I want to be able to like books.
 >
