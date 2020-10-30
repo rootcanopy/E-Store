@@ -6,9 +6,9 @@ var elements = stripe.elements();
 var style = {
     base: {
         color: '#000',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontFamily: '"Poppins", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',
-        fontSize: 'inherit',
+        fontSize: '16px',
         '::placeholder': {
             color: '#aab7c4'
         }
@@ -29,7 +29,7 @@ card.addEventListener('change', function(event) {
     if (event.error) {
         var html = `
             <span class="icon" role="alert">
-                <i class="fa fa-times"></i>
+                <i class="fas fa-times"></i>
             </span>
             <span>${event.error.message}</span>
         `;
@@ -42,7 +42,7 @@ card.addEventListener('change', function(event) {
 // Handle form submit
 var form = document.getElementById('payment-form');
 
-form.addEventListener('submit', function (ev) {
+form.addEventListener('submit', function(ev) {
     ev.preventDefault();
     card.update({ 'disabled': true });
     $('#submit-button').attr('disabled', true);
@@ -92,10 +92,10 @@ form.addEventListener('submit', function (ev) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
-                <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>`;
+                    <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
                 card.update({
                     'disabled': false

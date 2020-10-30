@@ -26,14 +26,14 @@ def checkout(request):
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY,
     )
+    checkout_form = CheckoutForm()
 
     print(intent)
 
-    checkout_form = CheckoutForm()
     template = 'checkout/checkout.html'
     context = {
         'checkout_form': checkout_form,
-        'stripe_public_key': 'pk_test_C9HJQ1QFL2S9E9LgiOW3oXDq00PPJmu2U5',
-        'client_secret': 'test client secret',
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
     }
     return render(request, template, context)

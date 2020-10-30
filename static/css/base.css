@@ -66,6 +66,7 @@
 }
 
 /* SCROLL */
+
 #scrollUp .fa-angle-double-up {
     float: right;
     width: 50px;
@@ -118,3 +119,18 @@
 /*-- NAV --*/
 
 
+/*-- MEDIA QUERIES 
+@media only screen and (max-width: 767px) {
+    .header-right-wrap {
+      margin-top: 2px;
+      margin-right: 25px;
+      overflow-x: hidden;
+    }
+ }
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.header-right-wrap {
+    margin-top: 0px;
+    margin-right: 50px;
+    }
+}

@@ -47,7 +47,7 @@
 }
 
 /*-- ORDER BUTTON --*/
-.Place-order > a {
+.Place-order > span {
     background-color: #a749ff;
     color: #fff;
     font-weight: 500;
@@ -60,6 +60,7 @@
     z-index: 9;
 }
   
-.Place-order > a:hover {
+.Place-order > span:hover {
     background-color: #333;
+    cursor: pointer;
 }

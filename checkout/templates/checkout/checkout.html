@@ -10,7 +10,7 @@
 
 {% block content %}
 
-<div class="breadcrumb-area pt-35 pb-35 bg-gray-3">
+<div class="breadcrumb-area pt-20 pb-20 bg-gray-3">
     <div class="container">
         <div class="breadcrumb-content text-center">
             <ul>
@@ -71,7 +71,7 @@
 
                                 <!-- STRIPE ELEMENT -->
                                 <fieldset class="">
-                                    <legend class="fieldset-label text-black w-auto payment"> Payment </legend>
+                                    <legend class="fieldset-label text-black w-auto payment"> Card Payment </legend>
                                     <!-- A Stripe card element will go here -->
                                     <div class="mb-3" id="card-element"></div>
                                     <!-- Used to display form errors -->
@@ -80,13 +80,15 @@
                                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                                 </fieldset>
 
+                                <button class="Place-order float-right mt-25" id="submit-button">
+                                    <span class="btn btn-hover">Place Order
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </button>
+
                             </form>
                         </div>
                     </div>
-                </div>
-
-                <div class="Place-order float-right mt-25">
-                    <a class="btn-hover" href="#">Place Order</a>
                 </div>
 
             </div>
@@ -103,14 +105,14 @@
                                 </ul>
                             </div>
                             <div class="your-order-middle">
-                            {% for order_item in order_items %}
+                                {% for order_item in order_items %}
                                 <ul>
                                     <li><span class="order-middle-left">{{ order_item.product.name }} X
                                             {{ order_item.quantity }}</span>
                                         <span class="order-price">€ {{ order_item.product.price }} </span>
                                     </li>
                                 </ul>
-                            {% endfor %}
+                                {% endfor %}
                             </div>
 
                             <div class="your-order-bottom">
@@ -137,6 +139,6 @@
 {{ block.super }}
 {{ stripe_public_key | json_script:"id_stripe_public_key" }}
 {{ client_secret | json_script:"id_client_secret" }}
-<script src="{% static 'checkout/js/stripe.js' %}"> </script>
+<script src="{% static 'checkout/js/stripe.js' %}"></script>
 
 {% endblock %}
