@@ -103,14 +103,14 @@
                                 </ul>
                             </div>
                             <div class="your-order-middle">
-                                {% for order_item in order_items %}
+                            {% for order_item in order_items %}
                                 <ul>
                                     <li><span class="order-middle-left">{{ order_item.product.name }} X
                                             {{ order_item.quantity }}</span>
                                         <span class="order-price">€ {{ order_item.product.price }} </span>
                                     </li>
                                 </ul>
-                                {% endfor %}
+                            {% endfor %}
                             </div>
 
                             <div class="your-order-bottom">
