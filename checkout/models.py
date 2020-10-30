@@ -31,7 +31,7 @@ class Order(models.Model):
         # GENERATES ORDER NUMBER
         return uuid.uuid4().hex.upper()
     
-    def update_order_total(self):
+    def update_total(self):
         # UPDATE GRAND TOTAL E/ TIME ORDERITEM IS ADDED
         self.order_total = self.orderitems.aggregate(Sum('orderitem_total'))['orderitem_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:

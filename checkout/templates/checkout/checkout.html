@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="checkout-area pt-40 pb-100">
+<section class="checkout-area pt-40 pb-100">
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-6">
@@ -31,10 +31,10 @@
                     <h3>Billing Details</h3>
 
                     <div class="row">
-                        <div class="col-lg-12 col-lg-6 mr-10">
+                        <div class="col-lg-12 col-md-6 mr-10">
                             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                                 {% csrf_token %}
-                                <fieldset class="rounded billing-info mb-5">
+                                <fieldset class="rounded billing-info mb-2">
                                     {{ checkout_form.full_name | as_crispy_field }}
                                     {{ checkout_form.email | as_crispy_field }}
                                 </fieldset>
@@ -90,18 +90,9 @@
                         </div>
                     </div>
                 </div>
-
-                <div id="loading-overlay">
-                    <h1 class="text-light logo-font loading-spinner">
-                        <span class="icon">
-                            <i class="fas fa-3x fa-sync-alt fa-spin"></i>
-                        </span>
-                    </h1>
-                </div>
-
             </div>
             <!-- ORDER SUMMARY -->
-            <div class="col-lg-5">
+            <div class="col-md-5">
                 <div class="your-order-area">
                     <h3>Your order</h3>
                     <div class="your-order-wrap gray-bg-4">
@@ -123,7 +114,7 @@
                                 {% endfor %}
                             </div>
 
-                            <div class="your-order-bottom">
+                            <div class="your-order-total">
                                 <p class="your-order-shipping">Delivery : {{ delivery }} </p>
                             </div>
 
@@ -140,6 +131,14 @@
             </div>
         </div>
     </div>
+</section>
+
+<div id="loading-overlay">
+    <h1 class="text-light logo-font loading-spinner">
+        <span class="icon">
+            <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+        </span>
+    </h1>
 </div>
 {% endblock %}
 

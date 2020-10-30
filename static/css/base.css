@@ -118,8 +118,22 @@
 
 /*-- NAV --*/
 
+.header-right-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin: auto;
+}
 
-/*-- MEDIA QUERIES 
+.header-right-wrap .same-style {
+  margin-left: 14px;
+  position: relative;
+}
+
+
+/*-- MEDIA QUERIES --*/
 @media only screen and (max-width: 767px) {
     .header-right-wrap {
       margin-top: 2px;
@@ -131,6 +145,6 @@
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 .header-right-wrap {
     margin-top: 0px;
-    margin-right: 50px;
+
     }
 }
