@@ -118,16 +118,3 @@
 /*-- NAV --*/
 
 
-/*-- CHECKOUT PAGE --*/
-
-.delivery {
-    font-size: 20px;
-    color: #000;
-    margin: 0 0 20px;
-    font-weight: 500;
-}
-
-#payment-form .form-control,
-#card-element {
-    color: #000;
-}
