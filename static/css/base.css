@@ -65,56 +65,6 @@
     right: 36px;
 }
 
-/* SCROLL */
-
-#scrollUp .fa-angle-double-up {
-    float: right;
-    width: 50px;
-    height: 50px;
-    background-color: #a749ff;
-    color: #fff;
-    right: 20px;
-    bottom: 60px;
-    text-align: center;
-    overflow: hidden;
-    border-radius: 50px;
-    z-index: 9811 !important;
-}
-
-@media only screen and (max-width: 767px) {
-    #scrollUp {
-      width: 40px;
-      height: 40px;
-    }
-  }
-  
-  #scrollUp i {
-    display: block;
-    line-height: 50px;
-    font-size: 22px;
-  }
-  
-  @media only screen and (max-width: 767px) {
-    #scrollUp i {
-      line-height: 40px;
-      font-size: 16px;
-    }
-  }
-  
-  #scrollUp:hover i {
-    -webkit-animation-name: fadeInUp;
-    animation-name: fadeInUp;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-  }
-  
-  .height-100 {
-    height: 100vh;
-  }
 
 /*-- NAV --*/
 
@@ -130,6 +80,23 @@
 .header-right-wrap .same-style {
   margin-left: 14px;
   position: relative;
+}
+
+/*-- PRODUCT DETAIL PG --*/
+input .qty_input {
+  width: 1rem;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.decrement-qty:hover,
+.increment-qty:hover {
+  background-color: #a749ff;
+  color: #fafafa;
 }
 
 
