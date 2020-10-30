@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block title %} Checkout {% endblock title %}
+
+{% block content %}
+
+<div class="breadcrumb-area pt-20 pb-20 bg-gray-3">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}"> Home</a>
+                </li>
+                <li class="was-active"> Checkout </li>
+                <li class="active"> Checkout Success </li> 
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="checkout-area pt-40 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="billing-info-wrap">
+                    <hr>
+                    <h3> Thank You! </h3>
+                    <hr>
+                    <p> Your order information is below.
+                        A confirmation email has been sent to <strong>{{ order.email }}</strong>
+                    </p>
+
+                    <div class="row">
+                        <div class="col-12 col-lg-7"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

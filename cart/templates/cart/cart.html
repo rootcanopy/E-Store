@@ -65,7 +65,8 @@
 
                         <!-- QTY INPUT FORM - BOUTIQUE -->
                         <td class="py-3">
-                            <form class="form update-form" method="POST" action="{% url 'update_cart' order_item.product_id %}">
+                            <form class="form update-form" method="POST"
+                                action="{% url 'update_cart' order_item.product_id %}">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-5 mt-5">
@@ -104,11 +105,12 @@
                             </form>
 
                             <a class="update-link text-info"><small>Update</small></a>
-                            <a class="remove-product text-danger float-right" id="remove_{{ order_item.product_id }}"><small>Remove</small></a>
+                            <a class="remove-product text-danger float-right"
+                                id="remove_{{ order_item.product_id }}"><small>Remove</small></a>
 
                         </td>
 
-                        <td class="py-3"> € {{ order_item.product.price | calc_subtotal:order_item.quantity }}  </td>
+                        <td class="py-3"> € {{ order_item.product.price | calc_subtotal:order_item.quantity }} </td>
 
                     </tr>
                     {% endfor %}
@@ -125,62 +127,19 @@
                 <div class="cart-shiping-update">
                     <a href="{% url 'home' %}">Continue Shopping</a>
                 </div>
-                <div class="cart-clear">
-                    <button>Update Shopping Cart</button>
-                    <a href="#">Clear Shopping Cart</a>
-                </div>
+
+                <a href="{% url 'checkout' %}" class="btn cart-clear">
+                    <span>Go to Checkout </span>
+                </a>
             </div>
         </div>
     </div>
-
-    <!-- VOUCHER DISCOUNT -->
-    <div class="row">
-        <div class="col-lg-4 col-md-6">
-            <div class="discount-code-wrapper">
-                <div class="title-wrap">
-                    <h4 class="cart-bottom-title section-bg-gray">Use Coupon Code</h4>
-                </div>
-                <div class="discount-code">
-                    <p>Enter your coupon code if you have one.</p>
-                    <form>
-                        <input type="text" required="" name="name">
-                        <button class="cart-btn-2" type="submit">Apply Coupon</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- ORDER SUMMARY -->
-        <div class="col-lg-4 col-md-6">
-            <div class="grand-totall">
-                <div class="title-wrap">
-                    <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
-                </div>
-                <h5>Total products <span> € {{ total }} </span></h5>
-                <div class="total-shipping">
-                    <h5>Total shipping</h5>
-                    <ul>
-                        <li><input type="checkbox"> Standard
-                            <span> € {{ delivery|floatformat:2 }} </span>
-                        </li>
-
-                        <li><input type="checkbox"> Express <span>$30.00</span></li>
-                    </ul>
-                </div>
-
-                <h4 class="grand-totall-title">Grand Total <span> € {{ grand_total|floatformat:2 }}</span></h4>
-                <a href="#">Proceed to Checkout</a>
-
-            </div>
-        </div>
-    </div>
-
 
     {% else %}
     <p class="lead mb-5">Your cart is empty.</p>
     <a href="{% url 'home' %}" class="btn bg-purple btn-lg">
         <span class="icon">
-            <i class="fas fa-chevron-left"></i>
+            <i class="fa fa-chevron-left"></i>
         </span>
 
         <span class="text-uppercase">Keep Shopping</span>
@@ -199,23 +158,24 @@
 
 <script type="text/javascript">
     // update qty on click 
-    $('.update-link').click(function(e) {
+    $('.update-link').click(function (e) {
         var form = $(this).prev('.update-form');
         form.submit();
     })
 
     //Delete
-    $('.remove-product').click(function(e) {
+    $('.remove-product').click(function (e) {
         var csrfToken = "{{ csrf_token }}";
         var productId = $(this).attr('id').split('remove_')[1];
         var url = `/cart/remove/${productId}/`;
-        var data = {'Csrfmiddlewaretoken': csrfToken};
+        var data = {
+            'Csrfmiddlewaretoken': csrfToken
+        };
 
         $.post(url, data)
-        .done(function () {
-            location.reload();
-        })
+            .done(function () {
+                location.reload();
+            })
     });
-
 </script>
 {% endblock %}

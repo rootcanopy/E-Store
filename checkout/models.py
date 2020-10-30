@@ -33,7 +33,7 @@ class Order(models.Model):
     
     def update_order_total(self):
         # UPDATE GRAND TOTAL E/ TIME ORDERITEM IS ADDED
-        self.order_total = self.orderitems.aggregate(Sum('orderitem_total'))['orderitem_total__sum']
+        self.order_total = self.orderitems.aggregate(Sum('orderitem_total'))['orderitem_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
         else:
@@ -44,7 +44,7 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         # OVERRIDE ORIG SAVE METHOD TO SET ORDER ID
         # IF ! BEEN SET ALREADY
-        if not save.order_id:
+        if not self.order_id:
             self.order_id = self._generate_order_id()
         super().save(*args, **kwargs)
 

@@ -47,6 +47,7 @@
 }
 
 /*-- ORDER BUTTON --*/
+
 .Place-order > span {
     background-color: #a749ff;
     color: #fff;
@@ -58,9 +59,11 @@
     text-transform: uppercase;
     border-radius: 50px;
     z-index: 9;
+    border: none;
 }
   
 .Place-order > span:hover {
     background-color: #333;
+    color: #fff;
     cursor: pointer;
 }
