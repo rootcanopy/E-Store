@@ -25,7 +25,7 @@ class UserProfile(AbstractUser):
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
+    #if created:
+    UserProfile.objects.create(user=instance)
     # EXISTING USERS JUST SAVE THE PROFILE
-    instance.userprofile.save()
+    # instance.userprofile.save()
