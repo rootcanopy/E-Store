@@ -99,13 +99,16 @@ input[type=number]::-webkit-outer-spin-button {
   color: #fafafa;
 }
 
+/* FOOTER */
+.copyright .footer-logo {
+    margin-bottom: 12px;
+}
+
 
 /*-- MEDIA QUERIES --*/
 @media only screen and (max-width: 767px) {
     .header-right-wrap {
-      margin-top: 2px;
-      margin-right: 25px;
-      overflow-x: hidden;
+        padding-left: 0 !important;
     }
  }
 

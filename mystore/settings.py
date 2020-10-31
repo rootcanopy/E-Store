@@ -48,13 +48,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'coverage',
+    'livereload',
     # MY APPS
     'home.apps.HomeConfig',
     'profiles.apps.ProfilesConfig',
     'products.apps.ProductsConfig',
     'cart.apps.CartConfig',
     'checkout.apps.CheckoutConfig',
-    'livereload',
 ]
 
 MIDDLEWARE = [
