@@ -1,4 +1,21 @@
-/* BOOTSTRAP TOASTS */ 
+/*-- MAIN BODY && GLOBAL */
+body {
+    overflow-x: hidden;
+    font-size: 14px;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: white;
+    z-index: -1;
+}
+
+
+/* BOOTSTRAP TOASTS */
 .container-messages {
     position: fixed;
     top: 72px;
@@ -53,6 +70,20 @@
     overflow-y: auto;
 }
 
+/*-- BUTTONS --*/
+.logout-btn .btn .btn-hover,
+button .primaryAction {
+    background-color: #f2f2f2;
+    border-radius: 50px;
+    color: #363f4d;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
 /* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
 .arrow-up {
     width: 0;
@@ -69,37 +100,148 @@
 /*-- NAV --*/
 
 .header-right-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-  margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    margin: auto;
 }
 
 .header-right-wrap .same-style {
-  margin-left: 14px;
-  position: relative;
+    margin-left: 14px;
+    position: relative;
 }
 
 /*-- PRODUCT DETAIL PG --*/
 input .qty_input {
-  width: 1rem;
+    width: 1rem;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .decrement-qty:hover,
 .increment-qty:hover {
-  background-color: #a749ff;
-  color: #fafafa;
+    background-color: #a749ff;
+    color: #fafafa;
 }
 
-/* FOOTER */
+/*------- INPUT --*/
+
+input {
+    background: #eceff8;
+    border: 2px solid #eceff8;
+    height: 45px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding-left: 10px;
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+}
+
+select {
+    width: 100%;
+    background: transparent;
+    border: 0px solid #eceff8;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 14px;
+    color: #333;
+}
+
+option {
+    background: #fff;
+    border: 0px solid #626262;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+input:focus {
+    background: transparent;
+}
+
+textarea {
+    resize: vertical;
+    background: #eceff8;
+    border: 2px solid #eceff8;
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+}
+
+textarea:focus {
+    background: transparent;
+    border: 2px solid #4FC1F0;
+    outline: none;
+}
+
+.input-group.divcenter.input-group .form-control {
+    padding-left: 0px;
+}
+
+/*----- Allauth form formatting --*/
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem;
+    /* mt-4 */
+    color: #6c757d;
+    /* text-secondary */
+}
+
+.allauth-form-inner-content input {
+    border-color: #000;
+    border-radius: 0;
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+    /* btn */
+    display: inline-block;
+    font-weight: 400;
+    color: #000;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid rgb(173, 172, 172);
+    border-radius: 1rem;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {
+    color: #fff;
+    background-color: #a749ff;
+    border-color: #a749ff;
+}
+
+.allauth-form-inner-content a {
+    color: #17a2b8;
+    /* text-info */
+}
+
+
+/*--- FOOTER ---*/
 .copyright .footer-logo {
     margin-bottom: 12px;
 }
@@ -110,11 +252,11 @@ input[type=number]::-webkit-outer-spin-button {
     .header-right-wrap {
         padding-left: 0 !important;
     }
- }
+}
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-.header-right-wrap {
-    margin-top: 0px;
+    .header-right-wrap {
+        margin-top: 0px;
 
     }
 }
